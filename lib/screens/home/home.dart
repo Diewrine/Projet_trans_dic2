@@ -1,0 +1,55 @@
+import 'package:dic2_project_trans/screens/home/homePageWidget.dart';
+import 'package:dic2_project_trans/screens/home/widgets/bottomNav.dart';
+import 'package:dic2_project_trans/services/auth.dart';
+import 'package:flutter/material.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  // Instance of authService
+  final AuthService _auth = AuthService();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Profile',
+          style: TextStyle(color: Colors.white),
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.indigo[500],
+        leading: IconButton(
+          icon: Icon(
+            Icons.notifications,
+            color: Colors.white,
+          ),
+          onPressed: () {},
+        ),
+        actions: <Widget>[
+          FlatButton.icon(
+            label: Text(
+              "Logout",
+              style: TextStyle(color: Colors.white),
+            ),
+            icon: Icon(
+              // Icons.arrow_back_ios,
+              Icons.exit_to_app,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: HomePage(),
+      ),
+      bottomNavigationBar: BottomNav(),
+    );
+  }
+}

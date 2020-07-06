@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "751595706427",
+    "firebase_url": "https://dic2-projet-trans.firebaseio.com",
+    "project_id": "dic2-projet-trans",
+    "storage_bucket": "dic2-projet-trans.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751595706427:android:c4cba38ab08ada1df7241e",
+        "android_client_info": {
+          "package_name": "com.example.dic2_project_trans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751595706427-tqsjbn9valhu0h6hqt99q0jmdisvqk6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqfQGGw0q7KQOxOhXH1Jaff0SOBX0WBY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751595706427-tqsjbn9valhu0h6hqt99q0jmdisvqk6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
