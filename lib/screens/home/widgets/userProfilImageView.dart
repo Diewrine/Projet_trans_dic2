@@ -11,7 +11,7 @@ class _UserProfilViewState extends State<UserProfilView> {
     return Container(
       decoration: BoxDecoration(
           color: Colors.blue[100],
-          borderRadius: BorderRadius.circular(50.5),
+          borderRadius: BorderRadius.circular(60.5),
           boxShadow: [
             BoxShadow(
               color: Colors.yellow,
@@ -20,7 +20,7 @@ class _UserProfilViewState extends State<UserProfilView> {
           ]),
       child: Center(
         child: CircleAvatar(
-          radius: 50,
+          radius: 60,
           backgroundImage: AssetImage("assets/profil.jpg"),
         ),
       ),

@@ -13,8 +13,8 @@ class _DisplayedPageState extends State<DisplayedPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            height: 60,
-            width: 60,
+            height: 70,
+            width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
                 borderRadius: BorderRadius.circular(30),
@@ -36,7 +36,7 @@ class _DisplayedPageState extends State<DisplayedPage> {
                     height: 3,
                   ),
                   Text(
-                    "Modifier\nl'avatar",
+                    "Modifier\nle profil",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
@@ -48,8 +48,8 @@ class _DisplayedPageState extends State<DisplayedPage> {
             ),
           ),
           Container(
-            height: 60,
-            width: 60,
+            height: 70,
+            width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
                 borderRadius: BorderRadius.circular(30),
@@ -87,8 +87,8 @@ class _DisplayedPageState extends State<DisplayedPage> {
             ),
           ),
           Container(
-            height: 60,
-            width: 60,
+            height: 70,
+            width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
                 borderRadius: BorderRadius.circular(30),
@@ -121,41 +121,41 @@ class _DisplayedPageState extends State<DisplayedPage> {
               ),
             ),
           ),
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-                color: Colors.indigo[500],
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.indigo[500],
-                    spreadRadius: 1,
-                  )
-                ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: Column(
-                children: <Widget>[
-                  Icon(
-                    Icons.edit,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    'Editer\n profil',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
+          // Container(
+          //   height: 70,
+          //   width: 80,
+          //   decoration: BoxDecoration(
+          //       color: Colors.indigo[500],
+          //       borderRadius: BorderRadius.circular(30),
+          //       boxShadow: [
+          //         BoxShadow(
+          //           color: Colors.indigo[500],
+          //           spreadRadius: 1,
+          //         )
+          //       ]),
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(4),
+          //     child: Column(
+          //       children: <Widget>[
+          //         Icon(
+          //           Icons.edit,
+          //           color: Colors.white,
+          //         ),
+          //         SizedBox(
+          //           height: 3,
+          //         ),
+          //         Text(
+          //           'Editer\n profil',
+          //           textAlign: TextAlign.center,
+          //           style: TextStyle(
+          //             color: Colors.white,
+          //             fontSize: 10.0,
+          //           ),
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

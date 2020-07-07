@@ -16,15 +16,16 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Profile',
-          style: TextStyle(color: Colors.white),
-        ),
+        // title: Text(
+        //   'Profile',
+        //   style: TextStyle(color: Colors.white),
+        // ),
         elevation: 0.0,
         backgroundColor: Colors.indigo[500],
         leading: IconButton(
           icon: Icon(
             Icons.notifications,
+            size: 27,
             color: Colors.white,
           ),
           onPressed: () {},
@@ -32,12 +33,13 @@ class _HomeState extends State<Home> {
         actions: <Widget>[
           FlatButton.icon(
             label: Text(
-              "Logout",
-              style: TextStyle(color: Colors.white),
+              "Quitter",
+              style: TextStyle(color: Colors.white, fontSize: 17),
             ),
             icon: Icon(
               // Icons.arrow_back_ios,
               Icons.exit_to_app,
+              size: 25,
               color: Colors.white,
             ),
             onPressed: () async {

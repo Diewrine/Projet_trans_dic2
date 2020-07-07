@@ -13,8 +13,9 @@ class _BottomNavState extends State<BottomNav> {
     return BottomNavigationBar(
       currentIndex: _currentIndex,
       backgroundColor: Colors.indigo[500],
-      iconSize: 20.0,
-      unselectedFontSize: 7.0,
+      iconSize: 30.0,
+      unselectedFontSize: 9.0,
+      selectedFontSize: 15,
       items: [
         BottomNavigationBarItem(
           icon: Icon(
