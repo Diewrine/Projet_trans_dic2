@@ -1,4 +1,5 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -28,11 +29,50 @@ class AuthService {
   }
 
   // register with email and password
-  Future register(String email, String password) async {
+  Future register(String email, String password, String fullname,
+      String jobFonction, String dept, String classe, int pMoney) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+
+      // condition for creating new record
+      if (jobFonction == "Etudiant") {
+        // create a new user record for Etudiant;
+        await DatabaseService(uid: user.uid).updateEtudiantData(
+          fullname = fullname,
+          jobFonction = jobFonction,
+          dept = dept,
+          classe = classe,
+          pMoney = pMoney,
+          false,
+        );
+      } else if (jobFonction == "Professeur") {
+        // create a new user record for Professeur;
+        await DatabaseService(uid: user.uid).updateProfesseurData(
+          fullname = fullname,
+          jobFonction = jobFonction,
+          dept = dept,
+          false,
+        );
+      } else if (jobFonction == "Comptable") {
+        // create a new user record for Comptable;
+        await DatabaseService(uid: user.uid).updateComptableData(
+          fullname = fullname,
+          jobFonction = jobFonction,
+          pMoney = pMoney,
+          false,
+        );
+      } else if (jobFonction == "departmentChief") {
+        // create a new user record for Departement;
+        await DatabaseService(uid: user.uid).updateDepartmentData(
+          fullname = fullname,
+          jobFonction = jobFonction,
+          dept = dept,
+          false,
+        );
+      }
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -46,6 +86,7 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());

@@ -1,5 +1,5 @@
 import 'package:dic2_project_trans/screens/home/widgets/diplayedPage.dart';
-import 'package:dic2_project_trans/screens/home/widgets/meniItem.dart';
+import 'package:dic2_project_trans/screens/home/widgets/menuItem.dart';
 import 'package:dic2_project_trans/screens/home/widgets/userProfilImageView.dart';
 import 'package:flutter/material.dart';
 
