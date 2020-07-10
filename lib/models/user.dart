@@ -6,14 +6,40 @@ class User {
   User(this.uid);
 }
 
-class EtudiantData{
-  final String uid;
-  final String fullname ;
-  final String jobFonction ;
-  final String dept ;
-  final String classe ;
-  final int  pMoney ;
-  final bool acountActivated;
+// class EtudiantData {
+//   final String uid;
+//   final String accountActivated;
+//   final String classe;
+//   final String dept;
+//   final String fullname;
+//   final String jobFunction;
+//   final int pMoney;
 
-  EtudiantData({this.uid,this.fullname,this.jobFonction,this.dept,this.classe,this.pMoney,this.acountActivated});
+//   EtudiantData(
+//       {this.uid,
+//       this.accountActivated,
+//       this.classe,
+//       this.dept,
+//       this.fullname,
+//       this.jobFunction,
+//       this.pMoney});
+// }
+
+class UserData {
+  final String uid;
+  final String accountActivated;
+  final String classe;
+  final String dept;
+  final String fullname;
+  final String jobFunction;
+  final int pMoney;
+
+  UserData(
+      {this.uid,
+      this.accountActivated,
+      this.classe,
+      this.dept,
+      this.fullname,
+      this.jobFunction,
+      this.pMoney});
 }

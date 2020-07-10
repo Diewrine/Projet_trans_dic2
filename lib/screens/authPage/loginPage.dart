@@ -209,9 +209,9 @@ class _LoginPageState extends State<LoginPage> {
                                                   });
                                                 }
                                                 else{
-                                                  Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
-
-                                                }
+                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                  }
+                                                
                                                 
                                                
                                               
@@ -242,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) =>SignUpPage()));
+                                              Navigator.push(context, MaterialPageRoute(builder:(context) =>SignUpPage()));
                                             },
                                           ),
                                         ),

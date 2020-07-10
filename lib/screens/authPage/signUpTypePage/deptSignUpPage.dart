@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -293,6 +294,9 @@ class _DepartmentSignUpState extends State<DepartmentSignUp> {
                                                           'Inscription refusée! \nVérifiez vos données svp';
                                                       loading = false;
                                                     });
+                                                  }
+                                                  else{
+                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
                                                   }
                                                 }
                                               }

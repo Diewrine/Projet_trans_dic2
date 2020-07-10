@@ -34,48 +34,19 @@ class AuthService {
 
   // register with email and password
   Future register(String email, String password, String fullname,
-      String jobFonction, String dept, String classe, int pMoney) async {
+      String jobFunction, String dept, String classe, int pMoney) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-
-      // condition for creating new record
-      if (jobFonction == "Etudiant") {
-        // create a new user record for Etudiant;
-        await DatabaseService(uid: user.uid).updateEtudiantData(
-          fullname = fullname,
-          jobFonction = jobFonction,
-          dept = dept,
-          classe = classe,
-          pMoney = pMoney,
-          false,
-        );
-      } else if (jobFonction == "Professeur") {
-        // create a new user record for Professeur;
-        await DatabaseService(uid: user.uid).updateProfesseurData(
-          fullname = fullname,
-          jobFonction = jobFonction,
-          dept = dept,
-          false,
-        );
-      } else if (jobFonction == "Comptable") {
-        // create a new user record for Comptable;
-        await DatabaseService(uid: user.uid).updateComptableData(
-          fullname = fullname,
-          jobFonction = jobFonction,
-          pMoney = pMoney,
-          false,
-        );
-      } else if (jobFonction == "departmentChief") {
-        // create a new user record for Departement;
-        await DatabaseService(uid: user.uid).updateDepartmentData(
-          fullname = fullname,
-          jobFonction = jobFonction,
-          dept = dept,
-          false,
-        );
-      }
+      await DatabaseService(uid: user.uid).updateUserData(
+        fullname = fullname,
+        jobFunction = jobFunction,
+        dept = dept,
+        classe = classe,
+        pMoney = pMoney,
+        false,
+      );
 
       return _userFromFirebaseUser(user);
     } catch (e) {

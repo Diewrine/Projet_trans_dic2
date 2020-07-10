@@ -241,9 +241,14 @@ class _CompatbleSignUpState extends State<CompatbleSignUp> {
                                                       loading = false;
                                                     });
                                                   }
+
+                                                  else{
+                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                  }
                                                   
                                                   
-                                                  Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                  
+                                                
                                                   
 
                                                 }
