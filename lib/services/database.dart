@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/etudiant.dart';
 
 class DatabaseService {
   final String uid;
@@ -63,5 +65,23 @@ class DatabaseService {
   }
 
   //--------------end of class Database
+  // Etudiant data from snapshot
+  EtudiantData _etudiantDataFromSnapshot(DocumentSnapshot snapshot){
+    return EtudiantData(
+      uid:uid,
+      fullname:snapshot.data['fulname'],
+      jobFonction :snapshot.data['jobFonction'],
+      dept : snapshot.data['dept'],
+      classe :snapshot.data['classe'],
+      pMoney :snapshot.data['pMoney'],
+      acountActivated:snapshot.data['acountActivated'],
+    );
+  }
 
+
+  //get etudiant doc stream
+  Stream<EtudiantData> get etudiantData{
+    return etudiantCollection.document(uid).snapshots().map(_etudiantDataFromSnapshot);
+  }
+  
 }
