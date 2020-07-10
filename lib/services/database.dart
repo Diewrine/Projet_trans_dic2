@@ -1,18 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dic2_project_trans/models/user.dart';
 
 class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
 
-  // Collection reference for Etudiant
-  final CollectionReference etudiantCollection =
-      Firestore.instance.collection('EtudiantData');
+  // Collection reference for User
+  final CollectionReference userCollection =
+      Firestore.instance.collection('UserData');
 
-  Future updateEtudiantData(String fullname, String jobFonction, String dept,
+  Future updateUserData(String fullname, String jobFunction, String dept,
       String classe, int pMoney, bool acountActivated) async {
-    return await etudiantCollection.document(uid).setData({
+    return await userCollection.document(uid).setData({
       'fullname': fullname,
-      'jobFonction': jobFonction,
+      'jobFunction': jobFunction,
       'dept': dept,
       'classe': classe,
       'pMoney': pMoney,
@@ -20,48 +21,21 @@ class DatabaseService {
     });
   }
 
-  // Collection reference for Professeur
-  final CollectionReference professeurCollection =
-      Firestore.instance.collection('ProfesseurData');
-
-  Future updateProfesseurData(String fullname, String jobFonction, String dept,
-      bool acountActivated) async {
-    return await professeurCollection.document(uid).setData({
-      'fullname': fullname,
-      'jobFonction': jobFonction,
-      'dept': dept,
-      'acountActivated': acountActivated,
-    });
+  //User data from snapshot
+  UserData _userData(DocumentSnapshot snapshot) {
+    return UserData(
+      uid: uid,
+      accountActivated: snapshot.data['name'],
+      classe: snapshot.data['classe'],
+      dept: snapshot.data['dept'],
+      fullname: snapshot.data['fullname'],
+      jobFunction: snapshot.data['jobFunction'],
+      pMoney: snapshot.data['pMoney'],
+    );
   }
 
-  // Collection reference for Comptable
-  final CollectionReference comptableCollection =
-      Firestore.instance.collection('comptableData');
-
-  Future updateComptableData(String fullname, String jobFonction, int pMoney,
-      bool acountActivated) async {
-    return await comptableCollection.document(uid).setData({
-      'fullname': fullname,
-      'jobFonction': jobFonction,
-      'pMoney': pMoney,
-      'acountActivated': acountActivated,
-    });
+  // get etudiant doc stream
+  Stream<UserData> get userData {
+    return userCollection.document(uid).snapshots().map(_userData);
   }
-
-  // Collection reference for Departement
-  final CollectionReference departmentCollection =
-      Firestore.instance.collection('departmentData');
-
-  Future updateDepartmentData(String fullname, String jobFonction, String dept,
-      bool acountActivated) async {
-    return await departmentCollection.document(uid).setData({
-      'fullname': fullname,
-      'jobFonction': jobFonction,
-      'dept': dept,
-      'acountActivated': acountActivated,
-    });
-  }
-
-  //--------------end of class Database
-
 }
