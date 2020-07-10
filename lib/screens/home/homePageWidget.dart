@@ -20,7 +20,6 @@ class _HomePageState extends State<HomePage> {
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
-          print(snapshot);
           if (snapshot.hasData) {
             //--
             UserData userData = snapshot.data;
@@ -94,7 +93,9 @@ class _HomePageState extends State<HomePage> {
                             // padding: const EdgeInsets.only(left: 20, right: 20),
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 20),
-                            child: DisplayedPage(),
+                            // child: DisplayedPage(),
+                            child:
+                                DisplayedPage(joFunction: userData.jobFunction),
                           ),
                         ],
                       ),
