@@ -62,46 +62,6 @@ class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
             SizedBox(
               height: 20.0,
             ),
-            DropdownButtonFormField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Departement ",
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                  ),
-                ),
-                value: currentDepartment,
-                items: departments.map((dept) {
-                  return DropdownMenuItem(
-                    value: dept,
-                    child: Text('$dept'),
-                  );
-                }).toList(),
-                onChanged: (String val) {
-                  currentDepartment = val;
-                }),
-            SizedBox(
-              height: 20.0,
-            ),
-            DropdownButtonFormField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Classe ",
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-              value: currentClasse,
-              items: classes.map((classe) {
-                return DropdownMenuItem(
-                  value: classe,
-                  child: Text('$classe'),
-                );
-              }).toList(),
-              onChanged: (String val) {
-                currentClasse = val;
-              },
-            ),
             RaisedButton(
                 child: Text(
                   'Enregistrer',
