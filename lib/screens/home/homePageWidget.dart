@@ -8,11 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+  
+ 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -21,8 +25,8 @@ class _HomePageState extends State<HomePage> {
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            //--
             UserData userData = snapshot.data;
+            
             return Container(
               color: Colors.white,
               child: Column(

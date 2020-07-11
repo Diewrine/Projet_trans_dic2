@@ -1,6 +1,8 @@
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
 import 'package:flutter/material.dart';
 
+import '../../editProfil.dart';
+
 class ComptaDisplayedPage extends StatefulWidget {
   @override
   _ComptaDisplayedPageState createState() => _ComptaDisplayedPageState();
@@ -9,6 +11,15 @@ class ComptaDisplayedPage extends StatefulWidget {
 class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
   @override
   Widget build(BuildContext context) {
+    void _showModalPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              child: EditProfil(),
+            );
+          });
+    }
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,9 +43,9 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                     Icons.person,
                   ),
                   color: Colors.white,
-                  onPressed: () {
-                    print("profil comptableee");
-                  },
+                  onPressed: _showModalPanel,
+                    
+                
                 ),
                 Text(
                   "Modifier\nle profil",

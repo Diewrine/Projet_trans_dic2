@@ -1,6 +1,10 @@
+import 'package:dic2_project_trans/screens/authPage/signUpPage.dart';
+import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
+
+import '../etudiant.dart';
 
 class LoginPage extends StatefulWidget {
   final Function toggleView;
@@ -20,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   // for error
   String error = "";
-
+  
   @override
   Widget build(BuildContext context) {
     return loading
@@ -193,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                                               if (_formKey.currentState
                                                   .validate()) {
                                                 setState(() {
-                                                  loading = true;
+                                                  loading = false;
                                                 });
                                                 dynamic result = await _auth
                                                     .signIn(email, password);
@@ -201,9 +205,18 @@ class _LoginPageState extends State<LoginPage> {
                                                   setState(() {
                                                     error =
                                                         'Les identifiants sont incorrects';
-                                                    loading = false;
+                                                    loading = true;
                                                   });
                                                 }
+                                                else{
+                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                  }
+                                                
+                                                
+                                               
+                                              
+                                                
+
                                               }
                                             },
                                           ),
@@ -229,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              widget.toggleView();
+                                              Navigator.push(context, MaterialPageRoute(builder:(context) =>SignUpPage()));
                                             },
                                           ),
                                         ),

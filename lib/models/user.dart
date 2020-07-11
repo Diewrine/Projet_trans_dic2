@@ -1,3 +1,5 @@
+import 'package:dic2_project_trans/screens/etudiant.dart';
+
 class User {
   final String uid;
 

@@ -9,6 +9,10 @@ class AuthService {
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(user.uid) : null;
   }
+  // get current user
+  Future getCurrentUserId() async {
+    return (await _auth.currentUser()).uid;
+  }
 
   // auth change user Stream
   Stream<User> get user {
@@ -57,6 +61,7 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      
 
       return _userFromFirebaseUser(user);
     } catch (e) {

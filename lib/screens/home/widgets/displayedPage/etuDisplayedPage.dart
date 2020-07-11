@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../editProfil.dart';
+
 class EtudiantDisplayedPage extends StatefulWidget {
   @override
   _EtudiantDisplayedPageState createState() => _EtudiantDisplayedPageState();
@@ -8,6 +10,15 @@ class EtudiantDisplayedPage extends StatefulWidget {
 class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
   @override
   Widget build(BuildContext context) {
+    void _showModalPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              child: EditProfil(),
+            );
+          });
+    }
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,9 +42,8 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                     Icons.person,
                   ),
                   color: Colors.white,
-                  onPressed: () {
-                    print("modifier profilll");
-                  },
+                  onPressed: _showModalPanel,
+                
                 ),
                 Text(
                   "Modifier\nle profil",

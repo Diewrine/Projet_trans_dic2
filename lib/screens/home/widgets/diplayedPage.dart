@@ -5,6 +5,7 @@ import 'package:dic2_project_trans/screens/home/widgets/displayedPage/profDispla
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
+
 class DisplayedPage extends StatefulWidget {
   final String joFunction;
   DisplayedPage({this.joFunction});
@@ -13,9 +14,12 @@ class DisplayedPage extends StatefulWidget {
 }
 
 class _DisplayedPageState extends State<DisplayedPage> {
+  
   @override
   Widget build(BuildContext context) {
-    final String userJob = widget.joFunction;
+
+    
+     final String userJob = widget.joFunction;
     if (userJob == "Etudiant") {
       return EtudiantDisplayedPage();
     } else if (userJob == "Professeur") {
@@ -27,6 +31,7 @@ class _DisplayedPageState extends State<DisplayedPage> {
     } else {
       return Loading();
     }
+   
   }
 }
 

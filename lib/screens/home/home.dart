@@ -1,7 +1,11 @@
+import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
 import 'package:dic2_project_trans/screens/home/homePageWidget.dart';
 import 'package:dic2_project_trans/screens/home/widgets/bottomNav.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:flutter/material.dart';
+
+
 
 class Home extends StatefulWidget {
   @override
@@ -11,8 +15,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // Instance of authService
   final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -44,8 +50,11 @@ class _HomeState extends State<Home> {
             ),
             onPressed: () async {
               await _auth.signOut();
+              
             },
+
           ),
+          
         ],
       ),
       body: SingleChildScrollView(
