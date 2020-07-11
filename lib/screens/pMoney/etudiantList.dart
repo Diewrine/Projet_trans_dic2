@@ -36,6 +36,7 @@ class _EtuListState extends State<EtuList> {
         itemCount: etuList.documents.length,
         padding: EdgeInsets.all(8.0),
         itemBuilder: (context, i) {
+          //print(etuList.documents[i].data["uid"]);
           return new ListTile(
             title: Text(etuList.documents[i].data["fullname"]),
             subtitle: Text(etuList.documents[i].data["jobFunction"]),

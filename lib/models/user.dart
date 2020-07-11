@@ -43,6 +43,7 @@ class UserData {
 }
 
 class UserList {
+  final String uid;
   final String accountActivated;
   final String classe;
   final String dept;
@@ -51,7 +52,8 @@ class UserList {
   final int pMoney;
 
   UserList(
-      {this.accountActivated,
+      {this.uid,
+      this.accountActivated,
       this.classe,
       this.dept,
       this.fullname,

@@ -12,6 +12,7 @@ class DatabaseService {
   Future updateUserData(String fullname, String jobFunction, String dept,
       String classe, int pMoney, bool acountActivated) async {
     return await userCollection.document(uid).setData({
+      "uid": uid,
       'fullname': fullname,
       'jobFunction': jobFunction,
       'dept': dept,
