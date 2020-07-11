@@ -4,7 +4,8 @@ import 'package:dic2_project_trans/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class EditProfProfil extends StatefulWidget {
-  UserData user;
+  //----------------
+  final UserData user;
   EditProfProfil(this.user);
   @override
   _EditProfProfilState createState() => _EditProfProfilState(this.user);

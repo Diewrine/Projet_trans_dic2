@@ -3,8 +3,6 @@ import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-import '../../etudiant.dart';
-
 class EtudiantSignUp extends StatefulWidget {
   final Function toggleView;
   EtudiantSignUp({this.toggleView});
@@ -376,12 +374,15 @@ class _EtudiantSignUpState extends State<EtudiantSignUp> {
                                                           'Inscription refusée! \nVérifiez vos données svp';
                                                       loading = false;
                                                     });
-                                                  }
-                                                  else{
-                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                  } else {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    Home()));
                                                   }
                                                 }
-                                             
                                               }
                                             },
                                           ),

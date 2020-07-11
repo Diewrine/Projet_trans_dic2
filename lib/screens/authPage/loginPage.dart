@@ -4,8 +4,6 @@ import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-import '../etudiant.dart';
-
 class LoginPage extends StatefulWidget {
   final Function toggleView;
   LoginPage({this.toggleView});
@@ -24,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   // for error
   String error = "";
-  
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -207,16 +205,13 @@ class _LoginPageState extends State<LoginPage> {
                                                         'Les identifiants sont incorrects';
                                                     loading = true;
                                                   });
+                                                } else {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              Home()));
                                                 }
-                                                else{
-                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
-                                                  }
-                                                
-                                                
-                                               
-                                              
-                                                
-
                                               }
                                             },
                                           ),
@@ -242,7 +237,11 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              Navigator.push(context, MaterialPageRoute(builder:(context) =>SignUpPage()));
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          SignUpPage()));
                                             },
                                           ),
                                         ),

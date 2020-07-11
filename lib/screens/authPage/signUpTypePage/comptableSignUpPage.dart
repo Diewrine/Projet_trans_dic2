@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
@@ -25,7 +24,7 @@ class _CompatbleSignUpState extends State<CompatbleSignUp> {
 
   // for error
   String error = "";
-  
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -240,17 +239,14 @@ class _CompatbleSignUpState extends State<CompatbleSignUp> {
                                                           'Inscription refusée! \nVérifiez vos données svp';
                                                       loading = false;
                                                     });
+                                                  } else {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    Home()));
                                                   }
-
-                                                  else{
-                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
-                                                  }
-                                                  
-                                                  
-                                                  
-                                                
-                                                  
-
                                                 }
                                               }),
                                         ),
