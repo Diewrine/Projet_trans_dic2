@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                                 // padding: const EdgeInsets.symmetric(
                                 //     horizontal: 100.0, vertical: 10.0),
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 10.0),
+                                    const EdgeInsets.symmetric(vertical: 5.0),
                                 child: Center(
                                   child: UserProfilView(),
                                 ),
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           SizedBox(
-                            height: 25,
+                            height: 20,
                           ),
                           Text(
                             //'Etudiant',
@@ -91,8 +91,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           Padding(
                             // padding: const EdgeInsets.only(left: 20, right: 20),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             // child: DisplayedPage(),
                             child:
                                 DisplayedPage(joFunction: userData.jobFunction),

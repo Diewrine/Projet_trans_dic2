@@ -41,3 +41,20 @@ class UserData {
       this.jobFunction,
       this.pMoney});
 }
+
+class UserList {
+  final String accountActivated;
+  final String classe;
+  final String dept;
+  final String fullname;
+  final String jobFunction;
+  final int pMoney;
+
+  UserList(
+      {this.accountActivated,
+      this.classe,
+      this.dept,
+      this.fullname,
+      this.jobFunction,
+      this.pMoney});
+}

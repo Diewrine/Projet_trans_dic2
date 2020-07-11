@@ -13,7 +13,7 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            height: 70,
+            height: 100,
             width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
@@ -24,31 +24,28 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
                     spreadRadius: 1,
                   )
                 ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: <Widget>[
-                  Icon(
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
                     Icons.person,
+                  ),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                Text(
+                  "Modifier\nle profil",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12.0,
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    "Modifier\nle profil",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
           Container(
-            height: 70,
+            height: 100,
             width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
@@ -59,35 +56,32 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
                     spreadRadius: 1,
                   )
                 ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4.5),
-              child: Column(
-                children: <Widget>[
-                  Icon(
-                    //Icons.crop_free,
-                    //Icons.flip,
-                    //Icons.fullscreen,
-                    //Icons.sensor_window,
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  //Icons.crop_free,
+                  //Icons.flip,
+                  //Icons.fullscreen,
+                  //Icons.sensor_window,
+                  icon: Icon(
                     Icons.ac_unit,
+                  ),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                Text(
+                  'Menu\nProf',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12.0,
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    'Menu\nProf',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
           Container(
-            height: 70,
+            height: 100,
             width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
@@ -98,27 +92,24 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
                     spreadRadius: 1,
                   )
                 ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: <Widget>[
-                  Icon(
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
                     Icons.assignment,
+                  ),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                Text(
+                  "Gestion\nAbsence",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12.0,
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    "Gestion\nAbsence",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
 import 'package:flutter/material.dart';
 
 class ComptaDisplayedPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            height: 70,
+            height: 100,
             width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
@@ -24,31 +25,30 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                     spreadRadius: 1,
                   )
                 ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: <Widget>[
-                  Icon(
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
                     Icons.person,
+                  ),
+                  color: Colors.white,
+                  onPressed: () {
+                    print("profil comptableee");
+                  },
+                ),
+                Text(
+                  "Modifier\nle profil",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12.0,
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    "Modifier\nle profil",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
           Container(
-            height: 70,
+            height: 100,
             width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
@@ -59,35 +59,32 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                     spreadRadius: 1,
                   )
                 ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4.5),
-              child: Column(
-                children: <Widget>[
-                  Icon(
-                    //Icons.crop_free,
-                    //Icons.flip,
-                    //Icons.fullscreen,
-                    //Icons.sensor_window,
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  //Icons.crop_free,
+                  //Icons.flip,
+                  //Icons.fullscreen,
+                  //Icons.sensor_window,
+                  icon: Icon(
                     Icons.security,
+                  ),
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                Text(
+                  'AutreMenu un\nCompta',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12.0,
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    'AutreMenu un\nCompta',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
           Container(
-            height: 70,
+            height: 100,
             width: 80,
             decoration: BoxDecoration(
                 color: Colors.indigo[500],
@@ -98,27 +95,33 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                     spreadRadius: 1,
                   )
                 ]),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Column(
-                children: <Widget>[
-                  Icon(
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
                     Icons.attach_money,
+                  ),
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return ComptaMoney();
+                          },
+                          fullscreenDialog: true,
+                        ));
+                  },
+                ),
+                Text(
+                  "Transfert\npMoney",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                     color: Colors.white,
+                    fontSize: 12.0,
                   ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    "Transfert\npMoney",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10.0,
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ],
