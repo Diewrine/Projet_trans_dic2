@@ -1,5 +1,6 @@
 import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/services/database.dart';
+import 'package:dic2_project_trans/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class EditComptableProfil extends StatefulWidget {
@@ -33,6 +34,7 @@ class _EditComptableProfilState extends State<EditComptableProfil> {
               height: 10.0,
             ),
             TextFormField(
+              decoration: formDecoration,
               initialValue: user.fullname,
               validator: (value) => value.isEmpty ? 'Entrez votre nom' : null,
               onChanged: (val) => setState(() => currentFullname = val),
