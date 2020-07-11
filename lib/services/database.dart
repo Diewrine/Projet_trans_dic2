@@ -34,7 +34,14 @@ class DatabaseService {
     );
   }
 
-  // get etudiant doc stream
+  getEtuList() async {
+    return await Firestore.instance
+        .collection('UserData')
+        .where("jobFunction", isEqualTo: "Etudiant")
+        .getDocuments();
+  }
+
+  // get users doc stream
   Stream<UserData> get userData {
     return userCollection.document(uid).snapshots().map(_userData);
   }
