@@ -24,9 +24,15 @@ class DatabaseService {
 
 // Transfer Service
   Future treansfertPMoney(String uidUser, double pMoney) async {
-    return await userCollection.document(uidUser).updateData({
-      'pMoney': FieldValue.increment(pMoney),
-    });
+    try {
+      await userCollection.document(uidUser).updateData({
+        'pMoney': FieldValue.increment(pMoney),
+      });
+      return userData;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
   //User data from snapshot
@@ -53,5 +59,21 @@ class DatabaseService {
   // get users doc stream
   Stream<UserData> get userData {
     return userCollection.document(uid).snapshots().map(_userData);
+  }
+//--------------------------------------For Transfert Historic
+
+  // Collection reference for User
+  final CollectionReference treansfertLogsCollection =
+      Firestore.instance.collection('TransfertLogsData');
+
+  Future updateTransfertLog(
+      String sendBy, String receiver, double montant) async {
+    return await treansfertLogsCollection.document().setData({
+      "uid": uid,
+      'sendBy': sendBy,
+      'receiver': receiver,
+      'montant': montant,
+      //dateTime
+    });
   }
 }

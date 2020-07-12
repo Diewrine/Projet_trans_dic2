@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class DisplayedPage extends StatefulWidget {
   final String joFunction;
   final String uid;
-  DisplayedPage({this.joFunction, this.uid});
+  final String name;
+  DisplayedPage({this.joFunction, this.uid, this.name});
   @override
   _DisplayedPageState createState() => _DisplayedPageState();
 }
@@ -18,12 +19,13 @@ class _DisplayedPageState extends State<DisplayedPage> {
   Widget build(BuildContext context) {
     final String userJob = widget.joFunction;
     final String userUid = widget.uid;
+    final String name = widget.name;
     if (userJob == "Etudiant") {
       return EtudiantDisplayedPage();
     } else if (userJob == "Professeur") {
       return ProfDisplayedPage();
     } else if (userJob == "Comptable") {
-      return ComptaDisplayedPage(uid: userUid);
+      return ComptaDisplayedPage(uid: userUid, name: name);
     } else if (userJob == "departmentChief") {
       return DeptDisplayedPage();
     } else {

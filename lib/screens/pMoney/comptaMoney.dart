@@ -1,16 +1,20 @@
 import 'package:dic2_project_trans/screens/pMoney/etudiantList.dart';
 import 'package:dic2_project_trans/services/database.dart';
+import 'package:dic2_project_trans/services/transfertsLog.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ComptaMoney extends StatefulWidget {
+  final String name;
+  ComptaMoney({this.name});
   @override
   _ComptaMoneyState createState() => _ComptaMoneyState();
 }
 
 class _ComptaMoneyState extends State<ComptaMoney> {
   DatabaseService databaseService = new DatabaseService();
+  TransfertsLog _transfertLog = new TransfertsLog();
 
   String _destinataire = "";
   double montant;
@@ -40,6 +44,9 @@ class _ComptaMoneyState extends State<ComptaMoney> {
 
   @override
   Widget build(BuildContext context) {
+    final String name = widget.name;
+    print("------------------");
+    print(name);
     return Scaffold(
       backgroundColor: Colors.indigo,
       appBar: AppBar(
@@ -149,9 +156,17 @@ class _ComptaMoneyState extends State<ComptaMoney> {
                       ),
                       onPressed: () {
                         montant = double.tryParse(_montant);
-                        if (montant != null) {
-                          databaseService.treansfertPMoney(
-                              _uid, montant.toDouble());
+                        if (montant != null && _destinataire != "") {
+                          dynamic result =
+                              databaseService.treansfertPMoney(_uid, montant);
+
+                          if (result != null) {
+                            _transfertLog.sendLog(name, _destinataire, montant);
+                          } else {
+                            print("errorr transfert !!!");
+                          }
+                          //-----------------
+
                           setState(() {
                             _destinataire = "";
                           });

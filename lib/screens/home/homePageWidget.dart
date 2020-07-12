@@ -93,7 +93,8 @@ class _HomePageState extends State<HomePage> {
                             // child: DisplayedPage(),
                             child: DisplayedPage(
                                 joFunction: userData.jobFunction,
-                                uid: user.uid),
+                                uid: user.uid,
+                                name: userData.fullname),
                           ),
                         ],
                       ),

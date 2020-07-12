@@ -1,11 +1,13 @@
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
+import 'package:dic2_project_trans/screens/pMoney/transfertHistoric.dart';
 import 'package:flutter/material.dart';
 
 import '../../editProfil.dart';
 
 class ComptaDisplayedPage extends StatefulWidget {
   final String uid;
-  ComptaDisplayedPage({this.uid});
+  final String name;
+  ComptaDisplayedPage({this.uid, this.name});
   @override
   _ComptaDisplayedPageState createState() => _ComptaDisplayedPageState();
 }
@@ -13,7 +15,8 @@ class ComptaDisplayedPage extends StatefulWidget {
 class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
   @override
   Widget build(BuildContext context) {
-    final String userUid = widget.uid;
+    //final String userUid = widget.uid;
+    final String name = widget.name;
 
     void _showModalPanel() {
       showModalBottomSheet(
@@ -24,8 +27,6 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
             );
           });
     }
-
-    print(userUid);
 
     return SingleChildScrollView(
       child: Row(
@@ -82,7 +83,16 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                     Icons.security,
                   ),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return TransfertHistoricCompta();
+                          },
+                          fullscreenDialog: true,
+                        ));
+                  },
                 ),
                 Text(
                   'Historique des\ntransactions',
@@ -119,7 +129,7 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return ComptaMoney();
+                            return ComptaMoney(name: name);
                           },
                           fullscreenDialog: true,
                         ));
