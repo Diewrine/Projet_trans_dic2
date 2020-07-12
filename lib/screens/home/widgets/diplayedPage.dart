@@ -5,33 +5,30 @@ import 'package:dic2_project_trans/screens/home/widgets/displayedPage/profDispla
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-
 class DisplayedPage extends StatefulWidget {
   final String joFunction;
-  DisplayedPage({this.joFunction});
+  final String uid;
+  DisplayedPage({this.joFunction, this.uid});
   @override
   _DisplayedPageState createState() => _DisplayedPageState();
 }
 
 class _DisplayedPageState extends State<DisplayedPage> {
-  
   @override
   Widget build(BuildContext context) {
-
-    
-     final String userJob = widget.joFunction;
+    final String userJob = widget.joFunction;
+    final String userUid = widget.uid;
     if (userJob == "Etudiant") {
       return EtudiantDisplayedPage();
     } else if (userJob == "Professeur") {
       return ProfDisplayedPage();
     } else if (userJob == "Comptable") {
-      return ComptaDisplayedPage();
+      return ComptaDisplayedPage(uid: userUid);
     } else if (userJob == "departmentChief") {
       return DeptDisplayedPage();
     } else {
       return Loading();
     }
-   
   }
 }
 

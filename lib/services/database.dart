@@ -10,7 +10,7 @@ class DatabaseService {
       Firestore.instance.collection('UserData');
 
   Future updateUserData(String fullname, String jobFunction, String dept,
-      String classe, int pMoney,  acountActivated) async {
+      String classe, int pMoney, acountActivated) async {
     return await userCollection.document(uid).setData({
       "uid": uid,
       'fullname': fullname,
@@ -19,6 +19,13 @@ class DatabaseService {
       'classe': classe,
       'pMoney': pMoney,
       'acountActivated': acountActivated,
+    });
+  }
+
+// Transfer Service
+  Future treansfertPMoney(String uidUser, double pMoney) async {
+    return await userCollection.document(uidUser).updateData({
+      'pMoney': FieldValue.increment(pMoney),
     });
   }
 
@@ -38,6 +45,7 @@ class DatabaseService {
   getEtuList() async {
     return await Firestore.instance
         .collection('UserData')
+        .orderBy("fullname")
         .where("jobFunction", isEqualTo: "Etudiant")
         .getDocuments();
   }

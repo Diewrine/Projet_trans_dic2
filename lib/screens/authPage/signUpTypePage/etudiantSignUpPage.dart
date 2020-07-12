@@ -330,19 +330,6 @@ class _EtudiantSignUpState extends State<EtudiantSignUp> {
 
                                               if (_formKey.currentState
                                                   .validate()) {
-                                                //   setState(() {
-                                                //     loading = true;
-                                                //   });
-                                                //   dynamic result = await _auth
-                                                //       .register(email, password);
-                                                //   if (result == null) {
-                                                //     setState(() {
-                                                //       error =
-                                                //           'Inscription refusée! \nVérifiez vos données svp';
-                                                //       loading = false;
-                                                //     });
-                                                //   }
-
                                                 if (department == "" ||
                                                     classe == "") {
                                                   setState(() {

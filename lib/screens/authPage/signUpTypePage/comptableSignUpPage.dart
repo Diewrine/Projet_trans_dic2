@@ -215,12 +215,13 @@ class _CompatbleSignUpState extends State<CompatbleSignUp> {
 
                                                 if (_formKey.currentState
                                                     .validate()) {
-                                                  setState(() {
-                                                    error = '';
-                                                    loading = false;
-                                                  });
+                                                  // setState(() {
+                                                  //   // error = '';
+                                                  //   loading = false;
+                                                  // });
 
                                                   setState(() {
+                                                    error = '';
                                                     loading = true;
                                                   });
 
