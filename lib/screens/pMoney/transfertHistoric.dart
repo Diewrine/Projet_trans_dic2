@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dic2_project_trans/services/database.dart';
+import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class TransfertHistoricCompta extends StatefulWidget {
@@ -7,6 +10,20 @@ class TransfertHistoricCompta extends StatefulWidget {
 }
 
 class _TransfertHistoricComptaState extends State<TransfertHistoricCompta> {
+  QuerySnapshot logsList;
+
+  DatabaseService databaseService = new DatabaseService();
+
+  @override
+  void initState() {
+    databaseService.getLogs().then((results) {
+      setState(() {
+        logsList = results;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +43,28 @@ class _TransfertHistoricComptaState extends State<TransfertHistoricCompta> {
           },
         ),
       ),
-      body: Center(child: Text("Historic")),
+      body: Center(child: _logsList()),
     );
+  }
+
+  Widget _logsList() {
+    if (logsList != null) {
+      return ListView.builder(
+        itemCount: logsList.documents.length,
+        padding: EdgeInsets.all(8.0),
+        itemBuilder: (context, i) {
+          return new ListTile(
+            title: Text(logsList.documents[i].data["montant"].toString()),
+            subtitle: Text(logsList.documents[i].data["sendBy"] +
+                "   " +
+                "->" +
+                "   " +
+                logsList.documents[i].data["receiver"]),
+          );
+        },
+      );
+    } else {
+      return Loading2();
+    }
   }
 }

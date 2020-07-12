@@ -76,4 +76,11 @@ class DatabaseService {
       //dateTime
     });
   }
+
+  // Get Logs
+  getLogs() async {
+    return await Firestore.instance
+        .collection('TransfertLogsData')
+        .getDocuments();
+  }
 }
