@@ -10,7 +10,7 @@ class DatabaseService {
       Firestore.instance.collection('UserData');
 
   Future updateUserData(String fullname, String jobFunction, String dept,
-      String classe, int pMoney, acountActivated) async {
+      String classe, double pMoney, acountActivated) async {
     return await userCollection.document(uid).setData({
       "uid": uid,
       'fullname': fullname,

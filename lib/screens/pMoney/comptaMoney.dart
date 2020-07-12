@@ -148,7 +148,7 @@ class _ComptaMoneyState extends State<ComptaMoney> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       onPressed: () {
-                        montant = num.tryParse(_montant);
+                        montant = double.tryParse(_montant);
                         if (montant != null) {
                           databaseService.treansfertPMoney(
                               _uid, montant.toDouble());

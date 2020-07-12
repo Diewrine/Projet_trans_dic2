@@ -30,7 +30,7 @@ class UserData {
   final String dept;
   final String fullname;
   final String jobFunction;
-  final int pMoney;
+  final double pMoney;
 
   UserData(
       {this.uid,

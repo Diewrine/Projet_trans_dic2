@@ -39,7 +39,7 @@ class _EtudiantSignUpState extends State<EtudiantSignUp> {
 
   // jobFunction
   String jobFunction = "";
-  int pMoney = 0;
+  double pMoney = 0;
 
   // for errors
   String error = "";
