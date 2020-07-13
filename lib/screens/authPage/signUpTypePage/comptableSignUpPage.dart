@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';

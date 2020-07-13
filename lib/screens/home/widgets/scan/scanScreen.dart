@@ -1,4 +1,4 @@
-import 'package:barcode_scan/barcode_scan.dart';
+
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -37,7 +37,13 @@ class _ScanPageState extends State<ScanPage> {
           Expanded(
             flex: 1,
             child: Center(
-              child: Text('scan result,$qrText'),
+              child: RaisedButton(
+                child:Text("Payer inscription") ,
+                onPressed: () { 
+                  PayerInscription();
+                 },
+                
+              )//Text('scan result,$qrText'),
             ),
           )
         ],

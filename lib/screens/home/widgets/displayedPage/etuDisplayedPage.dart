@@ -1,10 +1,8 @@
 import 'package:dic2_project_trans/screens/home/widgets/scan/generateScreen.dart';
 import 'package:dic2_project_trans/screens/home/widgets/scan/scanScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../editProfil.dart';
-import 'package:barcode_scan/barcode_scan.dart';
 
 class EtudiantDisplayedPage extends StatefulWidget {
   @override

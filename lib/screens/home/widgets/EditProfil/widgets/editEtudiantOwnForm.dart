@@ -4,7 +4,7 @@ import 'package:dic2_project_trans/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class EditEtudiantOwnForm extends StatefulWidget {
-  UserData user;
+ final  UserData user;
   EditEtudiantOwnForm(this.user);
   @override
   _EditEtudiantOwnFormState createState() =>

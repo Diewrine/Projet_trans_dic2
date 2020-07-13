@@ -4,7 +4,7 @@ import 'package:dic2_project_trans/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class EditChefDeptProfil extends StatefulWidget {
-  UserData user;
+  final UserData user;
   EditChefDeptProfil(this.user);
   @override
   _EditChefDeptProfilState createState() => _EditChefDeptProfilState(this.user);
@@ -28,6 +28,7 @@ class _EditChefDeptProfilState extends State<EditChefDeptProfil> {
 
   @override
   Widget build(BuildContext context) {
+    return 
     Container(
       child: Form(
         key: _formKey,

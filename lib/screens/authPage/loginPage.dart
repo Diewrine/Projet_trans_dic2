@@ -4,7 +4,6 @@ import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-import '../etudiant.dart';
 
 class LoginPage extends StatefulWidget {
   final Function toggleView;

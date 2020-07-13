@@ -1,4 +1,4 @@
-import 'package:dic2_project_trans/models/user.dart';
+
 import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
 import 'package:dic2_project_trans/screens/home/homePageWidget.dart';
 import 'package:dic2_project_trans/screens/home/widgets/bottomNav.dart';

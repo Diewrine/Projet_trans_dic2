@@ -1,10 +1,10 @@
 import 'package:dic2_project_trans/models/user.dart';
-import 'package:dic2_project_trans/screens/wrapper.dart';
+
 import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dic2_project_trans/screens/authPage/authPage.dart';
+
 
 void main() {
   runApp(MyApp());
