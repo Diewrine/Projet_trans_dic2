@@ -1,6 +1,10 @@
+import 'package:dic2_project_trans/screens/home/widgets/scan/generateScreen.dart';
+import 'package:dic2_project_trans/screens/home/widgets/scan/scanScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../editProfil.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 class EtudiantDisplayedPage extends StatefulWidget {
   @override
@@ -19,6 +23,7 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
             );
           });
     }
+   
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,20 +80,58 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                   //Icons.flip,
                   //Icons.fullscreen,
                   //Icons.sensor_window,
-                  icon: Icon(Icons.payment),
+                  icon: Icon(Icons.camera_alt),
                   color: Colors.white,
-                  onPressed: () {
-                    print("faire un scannnn");
-                  },
+                  onPressed:() {
+                    Navigator.push(context,   MaterialPageRoute(builder:(context)=>ScanPage()),);
+                  }
                 ),
                 Text(
-                  'Faire un\nscan',
+                  'Faire un\nscan' ,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12.0,
                   ),
-                )
+                ),
+                
+              ],
+            ),
+          ),
+          Container(
+            height: 100,
+            width: 80,
+            decoration: BoxDecoration(
+                color: Colors.indigo[500],
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.indigo[500],
+                    spreadRadius: 1,
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  //Icons.crop_free,
+                  //Icons.flip,
+                  //Icons.fullscreen,
+                  //Icons.sensor_window,
+                  icon: Icon(Icons.camera_alt),
+                  color: Colors.white,
+                  onPressed:() {
+                    Navigator.push(context,   MaterialPageRoute(builder:(context)=>GenerateScreen()),);
+                  }
+                ),
+                Text(
+                  'Generer /nQrcode' ,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.0,
+                  ),
+                ),
+                
               ],
             ),
           ),

@@ -209,7 +209,8 @@ class _LoginPageState extends State<LoginPage> {
                                                   });
                                                 }
                                                 else{
-                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                    Navigator.pop(context);
+                                                    Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
                                                   }
                                                 
                                                 
