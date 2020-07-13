@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/screens/pMoney/etuMoney.dart';
 import 'package:flutter/material.dart';
 
 import '../../editProfil.dart';
@@ -19,6 +20,7 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
             );
           });
     }
+
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +45,6 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                   ),
                   color: Colors.white,
                   onPressed: _showModalPanel,
-                
                 ),
                 Text(
                   "Modifier\nle profil",
@@ -71,10 +72,6 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
             child: Column(
               children: <Widget>[
                 IconButton(
-                  //Icons.crop_free,
-                  //Icons.flip,
-                  //Icons.fullscreen,
-                  //Icons.sensor_window,
                   icon: Icon(Icons.payment),
                   color: Colors.white,
                   onPressed: () {
@@ -111,7 +108,16 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                     Icons.attach_money,
                   ),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return EtuMoney();
+                          },
+                          fullscreenDialog: true,
+                        ));
+                  },
                 ),
                 Text(
                   "Polytech\nMoney",

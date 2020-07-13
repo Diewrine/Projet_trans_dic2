@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
+
+  //Instance of user
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   // Collection reference for User
   final CollectionReference userCollection =
@@ -20,19 +24,6 @@ class DatabaseService {
       'pMoney': pMoney,
       'acountActivated': acountActivated,
     });
-  }
-
-// Transfer Service
-  Future treansfertPMoney(String uidUser, double pMoney) async {
-    try {
-      await userCollection.document(uidUser).updateData({
-        'pMoney': FieldValue.increment(pMoney),
-      });
-      return userData;
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
   }
 
   //User data from snapshot
@@ -82,5 +73,36 @@ class DatabaseService {
     return await Firestore.instance
         .collection('TransfertLogsData')
         .getDocuments();
+  }
+
+  // Transfer Service
+  Future treansfertPMoney(String uidUser, double pMoney) async {
+    try {
+      await userCollection.document(uidUser).updateData({
+        'pMoney': FieldValue.increment(pMoney),
+      });
+      return userData;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future etuTreansfertPMoney(String uidUser, double pMoney) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    //print(uid);
+    try {
+      await userCollection.document(uidUser).updateData({
+        'pMoney': FieldValue.increment(pMoney),
+      });
+      await userCollection.document(uid).updateData({
+        'pMoney': FieldValue.increment(-pMoney),
+      });
+      return userData;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 }

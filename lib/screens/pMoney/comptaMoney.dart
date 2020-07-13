@@ -45,8 +45,7 @@ class _ComptaMoneyState extends State<ComptaMoney> {
   @override
   Widget build(BuildContext context) {
     final String name = widget.name;
-    print("------------------");
-    print(name);
+
     return Scaffold(
       backgroundColor: Colors.indigo,
       appBar: AppBar(

@@ -7,7 +7,7 @@ class TransfertsLog {
   Future sendLog(String sendBy, String receiver, double montant) async {
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
-    print(uid);
+
     // here the codes to input the data into firestore
 
     try {
