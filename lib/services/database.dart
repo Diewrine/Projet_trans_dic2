@@ -105,4 +105,58 @@ class DatabaseService {
       return null;
     }
   }
+
+  //-------------------For BottomNavBar
+  listUserForBottomNav() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final String jobFunction = document.data["jobFunction"];
+
+    try {
+      if (jobFunction == "Etudiant") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where(
+              "jobFunction",
+              isEqualTo: "Etudiant",
+            )
+            .getDocuments();
+      } else if (jobFunction == "Comptable") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where(
+              "jobFunction",
+              isEqualTo: "Comptable",
+            )
+            .getDocuments();
+      } else if (jobFunction == "Professeur") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where(
+              "jobFunction",
+              isEqualTo: "Professeur",
+            )
+            .getDocuments();
+      } else if (jobFunction == "departmentChief") {
+        print("Departement ...");
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where(
+              "jobFunction",
+              isEqualTo: "departmentChief",
+            )
+            .getDocuments();
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }

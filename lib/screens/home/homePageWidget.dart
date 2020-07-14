@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     // padding: EdgeInsets.only(top: 30.0, right: 10.0, left: 10.0),
                     padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
                     //margin: EdgeInsets.only(top: 100),
-                    child: MenuItem(),
+                    child: SingleChildScrollView(child: MenuItem()),
                   )
                 ],
               ),

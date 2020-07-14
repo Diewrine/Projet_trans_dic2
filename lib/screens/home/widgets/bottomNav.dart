@@ -1,15 +1,19 @@
+import 'package:dic2_project_trans/screens/home/HomeBottomNav/listUsers.dart';
+import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
+  final int currentIndex;
+  BottomNav({this.currentIndex});
   @override
   _BottomNavState createState() => _BottomNavState();
 }
 
 class _BottomNavState extends State<BottomNav> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    int _currentIndex = widget.currentIndex;
+    print(_currentIndex);
     return BottomNavigationBar(
       currentIndex: _currentIndex,
       backgroundColor: Colors.indigo[500],
@@ -18,9 +22,21 @@ class _BottomNavState extends State<BottomNav> {
       selectedFontSize: 15,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-            color: Colors.white,
+          icon: IconButton(
+            icon: Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return Home();
+                    },
+                    fullscreenDialog: true,
+                  ));
+            },
           ),
           title: Text(
             'Home',
@@ -28,10 +44,28 @@ class _BottomNavState extends State<BottomNav> {
           ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.group,
-            color: Colors.white,
-          ),
+          // icon: Icon(
+          //   Icons.group,
+          //   color: Colors.white,
+          // ),
+          icon: IconButton(
+              icon: Icon(
+                Icons.group,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                //------------------
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return ListUserPage();
+                      },
+                      fullscreenDialog: true,
+                    ));
+
+                //----------------------
+              }),
           title: Text(
             'Contacts',
             style: TextStyle(color: Colors.white),
