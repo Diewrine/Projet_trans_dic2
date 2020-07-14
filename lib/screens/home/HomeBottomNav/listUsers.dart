@@ -30,7 +30,7 @@ class _ListUserPageState extends State<ListUserPage> {
         title: Text("Comptes existants"),
         backgroundColor: Colors.indigo,
         leading: Icon(
-          Icons.arrow_back,
+          Icons.view_list,
           size: 27,
           color: Colors.white,
         ),
