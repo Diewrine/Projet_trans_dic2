@@ -17,10 +17,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        // title: Text(
-        //   'Profile',
-        //   style: TextStyle(color: Colors.white),
-        // ),
         elevation: 0.0,
         backgroundColor: Colors.indigo[500],
         leading: IconButton(

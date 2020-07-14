@@ -159,4 +159,31 @@ class DatabaseService {
       return null;
     }
   }
+
+  //-----------------For Scan transaction
+  Future scanPaymentAction(String scanResult) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    //print(uid);
+    try {
+      if (scanResult == "Launch100") {
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-100),
+        });
+      } else if (scanResult == "breakFast50") {
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-50),
+        });
+      } else if (scanResult == "rent3000") {
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-3000),
+        });
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }

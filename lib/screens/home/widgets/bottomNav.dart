@@ -13,7 +13,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     int _currentIndex = widget.currentIndex;
-    print(_currentIndex);
+
     return BottomNavigationBar(
       currentIndex: _currentIndex,
       backgroundColor: Colors.indigo[500],
