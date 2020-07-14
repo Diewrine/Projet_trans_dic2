@@ -117,7 +117,7 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                   }
                 ),
                 Text(
-                  'Generer /nQrcode' ,
+                  'Generer \nQrcode' ,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,

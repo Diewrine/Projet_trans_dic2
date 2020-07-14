@@ -14,7 +14,7 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
   GlobalKey qrKey = GlobalKey();
   String qrText = "";
-  String message = "";
+  String message = "Merci pour votre transaction ";
   final double montantPetitDej = 50;
   final double montantDejeunerDiner = 100;
   String ackOfValidatingPayment;

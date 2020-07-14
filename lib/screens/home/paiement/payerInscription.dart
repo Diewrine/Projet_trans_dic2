@@ -1,8 +1,6 @@
-import 'package:dic2_project_trans/models/user.dart';
-import 'package:dic2_project_trans/services/database.dart';
+
 import 'package:flutter/material.dart';
 
-import '../home.dart';
 
 class PayerInscription extends StatefulWidget {
 
@@ -26,7 +24,7 @@ class _PayerInscriptionState extends State<PayerInscription> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Merci pour votre transaction"),
+        title: Text("bienvenu"),
         centerTitle: true,
       ),
       body: Column(
@@ -36,7 +34,7 @@ class _PayerInscriptionState extends State<PayerInscription> {
             style: TextStyle(
               color: Colors.blue,
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 35,
             ),
           ),
           
