@@ -61,8 +61,8 @@ class _ScanPageState extends State<ScanPage> {
                     child: Center(
                       child: RaisedButton(child: Text(
                         (() {
-                          if (qrText=="ptitdej") {
-                            return "val";
+                          if (qrText.isNotEmpty) {
+                            return "cliquer pour valider";
                           } else {
                             return "Le Scan n'a pas commencé ";
                           }
