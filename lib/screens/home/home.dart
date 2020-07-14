@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
         child: HomePage(),
       ),
-      bottomNavigationBar: BottomNav(),
+      bottomNavigationBar: BottomNav(currentIndex: 0),
     );
   }
 }
