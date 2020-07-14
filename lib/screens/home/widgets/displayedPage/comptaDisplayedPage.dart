@@ -1,9 +1,13 @@
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
+import 'package:dic2_project_trans/screens/pMoney/transfertHistoric.dart';
 import 'package:flutter/material.dart';
 
 import '../../editProfil.dart';
 
 class ComptaDisplayedPage extends StatefulWidget {
+  final String uid;
+  final String name;
+  ComptaDisplayedPage({this.uid, this.name});
   @override
   _ComptaDisplayedPageState createState() => _ComptaDisplayedPageState();
 }
@@ -11,6 +15,9 @@ class ComptaDisplayedPage extends StatefulWidget {
 class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
   @override
   Widget build(BuildContext context) {
+    //final String userUid = widget.uid;
+    final String name = widget.name;
+
     void _showModalPanel() {
       showModalBottomSheet(
           context: context,
@@ -20,6 +27,7 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
             );
           });
     }
+
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,8 +52,6 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                   ),
                   color: Colors.white,
                   onPressed: _showModalPanel,
-                    
-                
                 ),
                 Text(
                   "Modifier\nle profil",
@@ -73,18 +79,23 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
             child: Column(
               children: <Widget>[
                 IconButton(
-                  //Icons.crop_free,
-                  //Icons.flip,
-                  //Icons.fullscreen,
-                  //Icons.sensor_window,
                   icon: Icon(
                     Icons.security,
                   ),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return TransfertHistoricCompta();
+                          },
+                          fullscreenDialog: true,
+                        ));
+                  },
                 ),
                 Text(
-                  'AutreMenu un\nCompta',
+                  'Historique des\ntransactions',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -118,7 +129,7 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return ComptaMoney();
+                            return ComptaMoney(name: name);
                           },
                           fullscreenDialog: true,
                         ));

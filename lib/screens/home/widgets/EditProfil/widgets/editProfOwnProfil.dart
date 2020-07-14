@@ -11,7 +11,7 @@ class EditProfProfil extends StatefulWidget {
 }
 
 class _EditProfProfilState extends State<EditProfProfil> {
-  UserData user;
+ final UserData user;
   _EditProfProfilState(this.user);
   final _formKey = GlobalKey<FormState>();
 

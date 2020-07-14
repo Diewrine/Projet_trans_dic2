@@ -1,10 +1,8 @@
 import 'package:dic2_project_trans/models/user.dart';
-
 import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   runApp(MyApp());

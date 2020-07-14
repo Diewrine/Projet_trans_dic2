@@ -9,6 +9,7 @@ class AuthService {
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(user.uid) : null;
   }
+
   // get current user
   Future getCurrentUserId() async {
     return (await _auth.currentUser()).uid;
@@ -34,7 +35,7 @@ class AuthService {
 
   // register with email and password
   Future register(String email, String password, String fullname,
-      String jobFunction, String dept, String classe, int pMoney) async {
+      String jobFunction, String dept, String classe, double pMoney) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -61,7 +62,6 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
-      
 
       return _userFromFirebaseUser(user);
     } catch (e) {

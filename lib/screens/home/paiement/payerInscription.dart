@@ -1,48 +1,49 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/services/database.dart';
 import 'package:flutter/material.dart';
 
+import '../home.dart';
+
 class PayerInscription extends StatefulWidget {
-  final UserData userData;
-  PayerInscription(this.userData);
+
+  final String qrText;
+  final String message;
+  PayerInscription( this.qrText,this.message);
   @override
-  _PayerInscriptionState createState() => _PayerInscriptionState(this.userData);
+  _PayerInscriptionState createState() =>
+      _PayerInscriptionState( this.qrText,this.message);
 }
 
 class _PayerInscriptionState extends State<PayerInscription> {
-  final UserData userData;
-  _PayerInscriptionState(this.userData);
+  final String qrText;
+  final String message;
+  _PayerInscriptionState( this.qrText,this.message);
 
-  double montantTc;
-  double montantDic;
-  int pMoney;
+  
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Validation"),
+        title: Text("Merci pour votre transaction"),
         centerTitle: true,
-
       ),
       body: Column(
         children: <Widget>[
-          RaisedButton(
-            child: Text("Valider"),
-            onPressed: () async {
-              if(userData.classe=="D.I.C.3"&& userData.classe=="D.I.C.2"){
-                setState(() {
-                  pMoney=userData.pMoney;
-                  
-                });
-              }
-
-            },
-          )
+          Text(
+            message,
+            style: TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+            ),
+          ),
+          
         ],
       ),
-
-      
-      
     );
   }
+
+  
 }

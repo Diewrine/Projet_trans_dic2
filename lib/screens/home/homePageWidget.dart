@@ -8,15 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  
- 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -26,7 +22,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
-            
+
             return Container(
               color: Colors.white,
               child: Column(
@@ -75,7 +71,6 @@ class _HomePageState extends State<HomePage> {
                             height: 20,
                           ),
                           Text(
-                            //'Etudiant',
                             userData.jobFunction,
                             style: TextStyle(
                                 color: Colors.white,
@@ -85,7 +80,6 @@ class _HomePageState extends State<HomePage> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10.0),
                             child: Text(
-                              // 'Cheikh Mbacké WADE'
                               userData.fullname,
                               style: TextStyle(
                                   color: Colors.white,
@@ -97,8 +91,10 @@ class _HomePageState extends State<HomePage> {
                             // padding: const EdgeInsets.only(left: 20, right: 20),
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             // child: DisplayedPage(),
-                            child:
-                                DisplayedPage(joFunction: userData.jobFunction),
+                            child: DisplayedPage(
+                                joFunction: userData.jobFunction,
+                                uid: user.uid,
+                                name: userData.fullname),
                           ),
                         ],
                       ),

@@ -15,7 +15,6 @@ class EditProfil extends StatefulWidget {
 
 class _EditProfilState extends State<EditProfil> {
 
-
   final List<String> departments = [
     "G.I.T.",
     "G.C.",
@@ -35,9 +34,6 @@ class _EditProfilState extends State<EditProfil> {
 
   String currentDepartment;
 
-  
-
-  
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -46,23 +42,14 @@ class _EditProfilState extends State<EditProfil> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
-            if(userData.jobFunction=='Etudiant'){
-               return EditEtudiantOwnForm(userData);
-
-            }
-            else if(userData.jobFunction=='Professeur')
+            if (userData.jobFunction == 'Etudiant') {
+              return EditEtudiantOwnForm(userData);
+            } else if (userData.jobFunction == 'Professeur')
               return EditProfProfil(userData);
-            
-            else if(userData.jobFunction=='departmentChief')
+            else if (userData.jobFunction == 'departmentChief')
               return EditChefDeptProfil(userData);
-
-            else 
-              return EditComptableProfil(userData); 
-          
-
-            
-
-            
+            else
+              return EditComptableProfil(userData);
           } else {
             return Loading();
           }

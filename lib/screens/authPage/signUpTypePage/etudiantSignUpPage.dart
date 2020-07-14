@@ -3,7 +3,6 @@ import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-
 class EtudiantSignUp extends StatefulWidget {
   final Function toggleView;
   EtudiantSignUp({this.toggleView});
@@ -40,7 +39,7 @@ class _EtudiantSignUpState extends State<EtudiantSignUp> {
 
   // jobFunction
   String jobFunction = "";
-  int pMoney = 0;
+  double pMoney = 0;
 
   // for errors
   String error = "";
@@ -331,19 +330,6 @@ class _EtudiantSignUpState extends State<EtudiantSignUp> {
 
                                               if (_formKey.currentState
                                                   .validate()) {
-                                                //   setState(() {
-                                                //     loading = true;
-                                                //   });
-                                                //   dynamic result = await _auth
-                                                //       .register(email, password);
-                                                //   if (result == null) {
-                                                //     setState(() {
-                                                //       error =
-                                                //           'Inscription refusée! \nVérifiez vos données svp';
-                                                //       loading = false;
-                                                //     });
-                                                //   }
-
                                                 if (department == "" ||
                                                     classe == "") {
                                                   setState(() {
@@ -375,12 +361,15 @@ class _EtudiantSignUpState extends State<EtudiantSignUp> {
                                                           'Inscription refusée! \nVérifiez vos données svp';
                                                       loading = false;
                                                     });
-                                                  }
-                                                  else{
-                                                     Navigator.push(context, MaterialPageRoute(builder:(context) =>Home()));
+                                                  } else {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder:
+                                                                (context) =>
+                                                                    Home()));
                                                   }
                                                 }
-                                             
                                               }
                                             },
                                           ),
