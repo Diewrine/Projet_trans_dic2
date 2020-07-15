@@ -59,6 +59,7 @@ class _EditComptableProfilState extends State<EditComptableProfil> {
                         user.dept,
                         user.classe,
                         user.pMoney,
+                        user.urlPhoto,
                         user.accountActivated);
                   }
                   Navigator.pop(context);

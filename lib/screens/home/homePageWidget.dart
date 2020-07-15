@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    //return StreamBuilder<EtudiantData>(
+
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
@@ -103,9 +103,7 @@ class _HomePageState extends State<HomePage> {
 
                   // Menu item
                   Container(
-                    // padding: EdgeInsets.only(top: 30.0, right: 10.0, left: 10.0),
                     padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
-                    //margin: EdgeInsets.only(top: 100),
                     child: SingleChildScrollView(child: MenuItem()),
                   )
                 ],

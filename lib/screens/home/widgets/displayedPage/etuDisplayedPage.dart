@@ -1,4 +1,6 @@
 //import 'package:dic2_project_trans/screens/home/widgets/scan/generateScreen.dart';
+
+import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:dic2_project_trans/screens/home/widgets/scan/scanner.dart';
 import 'package:dic2_project_trans/screens/pMoney/etuMoney.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,13 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                     Icons.person,
                   ),
                   color: Colors.white,
-                  onPressed: _showModalPanel,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
+                  //_showModalPanel,
                 ),
                 Text(
                   "Modifier\nle profil",

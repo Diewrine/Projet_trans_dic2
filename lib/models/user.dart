@@ -11,6 +11,7 @@ class UserData {
   final String dept;
   final String fullname;
   final String jobFunction;
+  final String urlPhoto;
   final double pMoney;
 
   UserData(
@@ -20,5 +21,6 @@ class UserData {
       this.dept,
       this.fullname,
       this.jobFunction,
+      this.urlPhoto,
       this.pMoney});
 }

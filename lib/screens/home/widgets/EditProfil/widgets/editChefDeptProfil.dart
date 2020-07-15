@@ -90,6 +90,7 @@ class _EditChefDeptProfilState extends State<EditChefDeptProfil> {
                         currentDepartment ?? user.dept,
                         user.classe,
                         user.pMoney,
+                        user.urlPhoto,
                         user.accountActivated);
                   }
                   Navigator.pop(context);

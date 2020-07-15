@@ -14,7 +14,7 @@ class DatabaseService {
       Firestore.instance.collection('UserData');
 
   Future updateUserData(String fullname, String jobFunction, String dept,
-      String classe, double pMoney, acountActivated) async {
+      String classe, double pMoney, String urlPhoto, acountActivated) async {
     return await userCollection.document(uid).setData({
       "uid": uid,
       'fullname': fullname,
@@ -22,6 +22,7 @@ class DatabaseService {
       'dept': dept,
       'classe': classe,
       'pMoney': pMoney,
+      "urlPhoto": null,
       'acountActivated': acountActivated,
     });
   }
@@ -35,10 +36,28 @@ class DatabaseService {
       dept: snapshot.data['dept'],
       fullname: snapshot.data['fullname'],
       jobFunction: snapshot.data['jobFunction'],
+      urlPhoto: snapshot.data['urlPhoto'],
       pMoney: snapshot.data['pMoney'],
     );
   }
 
+  //---------For urlProfil of user
+  Future updatePhoto(String url) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+
+    try {
+      await userCollection.document(uid).updateData({
+        'urlPhoto': url,
+      });
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+// get Etudiant List
   getEtuList() async {
     return await Firestore.instance
         .collection('UserData')

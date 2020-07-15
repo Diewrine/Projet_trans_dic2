@@ -79,6 +79,7 @@ class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
                         currentDepartment ?? user.dept,
                         currentClasse ?? user.classe,
                         user.pMoney,
+                        user.urlPhoto,
                         user.accountActivated);
                   }
                   Navigator.pop(context);

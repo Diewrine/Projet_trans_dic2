@@ -11,7 +11,7 @@ class EditProfProfil extends StatefulWidget {
 }
 
 class _EditProfProfilState extends State<EditProfProfil> {
- final UserData user;
+  final UserData user;
   _EditProfProfilState(this.user);
   final _formKey = GlobalKey<FormState>();
 
@@ -89,6 +89,7 @@ class _EditProfProfilState extends State<EditProfProfil> {
                         currentDepartment ?? user.dept,
                         user.classe,
                         user.pMoney,
+                        user.urlPhoto,
                         user.accountActivated);
                   }
                   Navigator.pop(context);
