@@ -1,13 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../editProfil.dart';
 
 class DeptDisplayedPage extends StatefulWidget {
+  final File newProfilImage;
+  final Function getImageProfilNupload;
+  DeptDisplayedPage(this.newProfilImage,this.getImageProfilNupload);
   @override
-  _DeptDisplayedPageState createState() => _DeptDisplayedPageState();
+  _DeptDisplayedPageState createState() => _DeptDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
 }
 
 class _DeptDisplayedPageState extends State<DeptDisplayedPage> {
+  final File newProfilImage;
+  Function getImageProfilNupload;
+  _DeptDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
+
   @override
   Widget build(BuildContext context) {
     void _showModalPanel() {
@@ -91,7 +100,7 @@ class _DeptDisplayedPageState extends State<DeptDisplayedPage> {
               ],
             ),
           ),
-          Container(
+           Container(
             height: 100,
             width: 80,
             decoration: BoxDecoration(
@@ -111,6 +120,38 @@ class _DeptDisplayedPageState extends State<DeptDisplayedPage> {
                   ),
                   color: Colors.white,
                   onPressed: () {},
+                ),
+                Text(
+                  "Changer\nPhoto",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.0,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 100,
+            width: 80,
+            decoration: BoxDecoration(
+                color: Colors.indigo[500],
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.indigo[500],
+                    spreadRadius: 1,
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.all_inclusive,
+                  ),
+                  color: Colors.white,
+                  onPressed: getImageProfilNupload,
                 ),
                 Text(
                   "Menu\nDept",

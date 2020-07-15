@@ -43,6 +43,7 @@ class _EditComptableProfilState extends State<EditComptableProfil> {
             SizedBox(
               height: 10.0,
             ),
+            
             RaisedButton(
                 child: Text(
                   'Enregistrer',
@@ -59,7 +60,8 @@ class _EditComptableProfilState extends State<EditComptableProfil> {
                         user.dept,
                         user.classe,
                         user.pMoney,
-                        user.accountActivated);
+                        user.accountActivated,
+                        user.profilPhoto);
                   }
                   Navigator.pop(context);
                 }),

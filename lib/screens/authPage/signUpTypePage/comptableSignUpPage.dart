@@ -17,6 +17,7 @@ class _CompatbleSignUpState extends State<CompatbleSignUp> {
   String email = "";
   String password = "";
   String fullname = "";
+  String profilPhoto="assets/profil.jpg";
 
   // jobFunction
   String jobFunction = "";
@@ -233,7 +234,8 @@ class _CompatbleSignUpState extends State<CompatbleSignUp> {
                                                           jobFunction,
                                                           null,
                                                           null,
-                                                          0);
+                                                          0,
+                                                          profilPhoto);
                                                   if (result == null) {
                                                     setState(() {
                                                       error =

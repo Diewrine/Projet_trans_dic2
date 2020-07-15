@@ -18,6 +18,7 @@ class _ProfSignUpState extends State<ProfSignUp> {
   String password = "";
   String fullname = "";
   String department = "";
+  String profilPhoto="assets/profil.jpg";
 
   // jobFunction
   String jobFunction = "";
@@ -286,7 +287,8 @@ class _ProfSignUpState extends State<ProfSignUp> {
                                                           jobFunction,
                                                           department,
                                                           null,
-                                                          null);
+                                                          null,
+                                                          profilPhoto);
                                                   if (result == null) {
                                                     setState(() {
                                                       error =

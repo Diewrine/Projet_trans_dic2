@@ -1,7 +1,15 @@
+import 'dart:io';
+
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/database.dart';
 import 'package:dic2_project_trans/shared/constants.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../../homePageWidget.dart';
+import '../../userProfilImageView.dart';
 
 class EditEtudiantOwnForm extends StatefulWidget {
   //---------------------
@@ -14,6 +22,15 @@ class EditEtudiantOwnForm extends StatefulWidget {
 
 class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
   _EditEtudiantOwnFormState(this.user);
+  File newProfilImage;
+  final picker = ImagePicker();
+  Future getImageProfil() async {
+    final tempImage = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      newProfilImage = File(tempImage.path);
+    });
+  }
+
   final _formKey = GlobalKey<FormState>();
   UserData user;
   final List<String> departments = [
@@ -63,6 +80,17 @@ class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
             SizedBox(
               height: 20.0,
             ),
+            SizedBox(
+              height: 20.0,
+            ),
+            RaisedButton(
+              child: Text(
+                "Changer photo",
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: getImageProfil,
+              color: Colors.blue,
+            ),
             RaisedButton(
                 child: Text(
                   'Enregistrer',
@@ -79,13 +107,18 @@ class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
                         currentDepartment ?? user.dept,
                         currentClasse ?? user.classe,
                         user.pMoney,
-                        user.accountActivated);
+                        user.accountActivated,
+                        user.profilPhoto);
+                    
                   }
                   Navigator.pop(context);
+                  
                 }),
           ],
         ),
       ),
     );
   }
+  
 }
+

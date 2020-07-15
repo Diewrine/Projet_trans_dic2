@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dic2_project_trans/screens/home/widgets/scan/generateScreen.dart';
 import 'package:dic2_project_trans/screens/home/widgets/scan/scanScreen.dart';
 import 'package:dic2_project_trans/screens/pMoney/etuMoney.dart';
@@ -6,11 +8,17 @@ import 'package:flutter/material.dart';
 import '../../editProfil.dart';
 
 class EtudiantDisplayedPage extends StatefulWidget {
+ final File newProfilImage;
+ final Function getImageProfilNupload;
+ EtudiantDisplayedPage(this.newProfilImage,this.getImageProfilNupload);
   @override
-  _EtudiantDisplayedPageState createState() => _EtudiantDisplayedPageState();
+  _EtudiantDisplayedPageState createState() => _EtudiantDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
 }
 
 class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
+  File newProfilImage;
+  Function getImageProfilNupload;
+  _EtudiantDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
   @override
   Widget build(BuildContext context) {
     void _showModalPanel() {
@@ -22,6 +30,8 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
             );
           });
     }
+
+
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,12 +122,10 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                   //Icons.sensor_window,
                   icon: Icon(Icons.camera_alt),
                   color: Colors.white,
-                  onPressed:() {
-                    Navigator.push(context,   MaterialPageRoute(builder:(context)=>GenerateScreen()),);
-                  }
+                  onPressed:getImageProfilNupload
                 ),
                 Text(
-                  'Generer \nQrcode' ,
+                  'Changer Photo' ,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,

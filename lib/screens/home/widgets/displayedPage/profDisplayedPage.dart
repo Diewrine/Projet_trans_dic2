@@ -1,13 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../editProfil.dart';
 
 class ProfDisplayedPage extends StatefulWidget {
+  final File newProfilImage;
+  final Function getImageProfilNupload;
+  ProfDisplayedPage(this.newProfilImage,this.getImageProfilNupload);
   @override
-  _ProfDisplayedPageState createState() => _ProfDisplayedPageState();
+  _ProfDisplayedPageState createState() => _ProfDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
 }
 
 class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
+  File newProfilIMage;
+  Function getImageProfilNupdate;
+  _ProfDisplayedPageState(this.newProfilIMage,this.getImageProfilNupdate);
   @override
   Widget build(BuildContext context) {
     void _showModalPanel() {
@@ -46,6 +54,38 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
                 ),
                 Text(
                   "Modifier\nle profil",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.0,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 100,
+            width: 80,
+            decoration: BoxDecoration(
+                color: Colors.indigo[500],
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.indigo[500],
+                    spreadRadius: 1,
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.person,
+                  ),
+                  color: Colors.white,
+                  onPressed: _showModalPanel,
+                ),
+                Text(
+                  "Changer\nPhoto",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,

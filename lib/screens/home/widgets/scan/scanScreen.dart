@@ -72,7 +72,7 @@ class _ScanPageState extends State<ScanPage> {
                           if (userData.classe == "D.I.C.1" ||
                               userData.classe == "D.I.C.2" ||
                               userData.classe == "D.I.C.3" &&
-                                  userData.pMoney >= montantDic) {
+                              userData.pMoney >= montantDic) {
                             setState(() {
                               pMoney = userData.pMoney;
                               restantSolde = pMoney - montantDic;
@@ -84,7 +84,8 @@ class _ScanPageState extends State<ScanPage> {
                                     userData.dept,
                                     userData.classe,
                                     restantSolde,
-                                    userData.accountActivated);
+                                    userData.accountActivated,
+                                    userData.profilPhoto);
                           } else if (userData.classe == "T.C.1" ||
                               userData.classe == "T.C.2" &&
                                   userData.pMoney >= montantTc) {
@@ -100,7 +101,8 @@ class _ScanPageState extends State<ScanPage> {
                                     userData.dept,
                                     userData.classe,
                                     restantSolde,
-                                    userData.accountActivated);
+                                    userData.accountActivated,
+                                    userData.profilPhoto);
                           } else {
                             setState(() {
                               message =
@@ -128,7 +130,8 @@ class _ScanPageState extends State<ScanPage> {
                                   userData.dept,
                                   userData.classe,
                                   restantSolde,
-                                  userData.accountActivated);
+                                  userData.accountActivated,
+                                  userData.profilPhoto);
                           Navigator.pop(context);
                           Navigator.push(
                               context,
@@ -149,7 +152,8 @@ class _ScanPageState extends State<ScanPage> {
                                   userData.dept,
                                   userData.classe,
                                   restantSolde,
-                                  userData.accountActivated);
+                                  userData.accountActivated,
+                                  userData.profilPhoto);
 
                           Navigator.pop(context);
                           Navigator.push(

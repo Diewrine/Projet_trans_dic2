@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/services/database.dart';
 import 'package:dic2_project_trans/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditChefDeptProfil extends StatefulWidget {
   //---------------------
@@ -15,6 +18,14 @@ class _EditChefDeptProfilState extends State<EditChefDeptProfil> {
   UserData user;
   _EditChefDeptProfilState(this.user);
   final _formKey = GlobalKey<FormState>();
+  File newProfilImage;
+  final picker = ImagePicker();
+  Future getImageProfil() async {
+    final tempImage = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      newProfilImage = File(tempImage.path);
+    });
+  }
 
   final List<String> departments = [
     "G.I.T.",
@@ -74,6 +85,7 @@ class _EditChefDeptProfilState extends State<EditChefDeptProfil> {
             SizedBox(
               height: 20.0,
             ),
+
             RaisedButton(
                 child: Text(
                   'Enregistrer',
@@ -90,7 +102,8 @@ class _EditChefDeptProfilState extends State<EditChefDeptProfil> {
                         currentDepartment ?? user.dept,
                         user.classe,
                         user.pMoney,
-                        user.accountActivated);
+                        user.accountActivated,
+                        user.profilPhoto);
                   }
                   Navigator.pop(context);
                 }),

@@ -1,14 +1,19 @@
+import 'dart:io';
+
 import 'package:dic2_project_trans/screens/home/homePageWidget.dart';
 import 'package:dic2_project_trans/screens/home/widgets/bottomNav.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
+
+  Home();
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  _HomeState();
   // Instance of authService
   final AuthService _auth = AuthService();
 

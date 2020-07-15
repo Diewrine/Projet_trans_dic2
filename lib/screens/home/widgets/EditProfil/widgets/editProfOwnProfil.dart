@@ -89,7 +89,8 @@ class _EditProfProfilState extends State<EditProfProfil> {
                         currentDepartment ?? user.dept,
                         user.classe,
                         user.pMoney,
-                        user.accountActivated);
+                        user.accountActivated,
+                        user.profilPhoto);
                   }
                   Navigator.pop(context);
                 }),

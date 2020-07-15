@@ -1,20 +1,41 @@
+import 'dart:io';
+
 import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/screens/home/widgets/diplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/menuItem.dart';
 import 'package:dic2_project_trans/screens/home/widgets/userProfilImageView.dart';
 import 'package:dic2_project_trans/services/database.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+  
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  _HomePageState();
+
+  File newProfilImage;
+  
+
+  Future getImageProfilNupload() async {
+    final picker = ImagePicker();
+    final tempImage = await picker.getImage(source: ImageSource.gallery);
+    setState(() {
+      newProfilImage = File(tempImage.path);
+    });
+
+    
+  }
+
   @override
   Widget build(BuildContext context) {
+      
     final user = Provider.of<User>(context);
     //return StreamBuilder<EtudiantData>(
     return StreamBuilder<UserData>(
@@ -94,7 +115,8 @@ class _HomePageState extends State<HomePage> {
                             child: DisplayedPage(
                                 joFunction: userData.jobFunction,
                                 uid: user.uid,
-                                name: userData.fullname),
+                                name: userData.fullname,
+                                getImageProfilNupload: getImageProfilNupload),
                           ),
                         ],
                       ),

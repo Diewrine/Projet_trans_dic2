@@ -12,6 +12,7 @@ class UserData {
   final String fullname;
   final String jobFunction;
   final double pMoney;
+ String profilPhoto;
 
   UserData(
       {this.uid,
@@ -20,5 +21,6 @@ class UserData {
       this.dept,
       this.fullname,
       this.jobFunction,
-      this.pMoney});
+      this.pMoney,
+      this.profilPhoto});
 }

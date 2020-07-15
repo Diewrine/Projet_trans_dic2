@@ -18,6 +18,7 @@ class _DepartmentSignUpState extends State<DepartmentSignUp> {
   String password = "";
   String fullname = "";
   String department = "";
+  String profilPhoto="assets/profil.jpg";
 
   // for dropdown
   final List<String> departments = [
@@ -287,7 +288,8 @@ class _DepartmentSignUpState extends State<DepartmentSignUp> {
                                                           jobFunction,
                                                           department,
                                                           null,
-                                                          null);
+                                                          null,
+                                                          profilPhoto);
                                                   if (result == null) {
                                                     setState(() {
                                                       error =

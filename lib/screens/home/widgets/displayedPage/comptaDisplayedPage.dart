@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
 import 'package:dic2_project_trans/screens/pMoney/transfertHistoric.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,10 @@ import '../../editProfil.dart';
 class ComptaDisplayedPage extends StatefulWidget {
   final String uid;
   final String name;
-  ComptaDisplayedPage({this.uid, this.name});
+  final File newProfilImage;
+  final Function getImageProfilNupload;
+
+  ComptaDisplayedPage({this.uid, this.name, this.newProfilImage,this.getImageProfilNupload});
   @override
   _ComptaDisplayedPageState createState() => _ComptaDisplayedPageState();
 }
@@ -55,6 +60,38 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                 ),
                 Text(
                   "Modifier\nle profil",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12.0,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 100,
+            width: 80,
+            decoration: BoxDecoration(
+                color: Colors.indigo[500],
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.indigo[500],
+                    spreadRadius: 1,
+                  )
+                ]),
+            child: Column(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.person,
+                  ),
+                  color: Colors.white,
+                  onPressed: _showModalPanel,
+                ),
+                Text(
+                  "Changer\nphoto",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
