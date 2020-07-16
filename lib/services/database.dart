@@ -14,7 +14,11 @@ class DatabaseService {
       Firestore.instance.collection('UserData');
 
   Future updateUserData(String fullname, String jobFunction, String dept,
+<<<<<<< HEAD
       String classe, double pMoney, acountActivated,String profilPhoto) async {
+=======
+      String classe, double pMoney, String urlPhoto, acountActivated) async {
+>>>>>>> 67440c4855c22ff95eea4619e62d960c799ed7cb
     return await userCollection.document(uid).setData({
       "uid": uid,
       'fullname': fullname,
@@ -22,6 +26,7 @@ class DatabaseService {
       'dept': dept,
       'classe': classe,
       'pMoney': pMoney,
+      "urlPhoto": null,
       'acountActivated': acountActivated,
       "profilPhoto":profilPhoto,
     });
@@ -36,11 +41,29 @@ class DatabaseService {
       dept: snapshot.data['dept'],
       fullname: snapshot.data['fullname'],
       jobFunction: snapshot.data['jobFunction'],
+      urlPhoto: snapshot.data['urlPhoto'],
       pMoney: snapshot.data['pMoney'],
       profilPhoto:snapshot.data['profilPhoto'],
     );
   }
 
+  //---------For urlProfil of user
+  Future updatePhoto(String url) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+
+    try {
+      await userCollection.document(uid).updateData({
+        'urlPhoto': url,
+      });
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+// get Etudiant List
   getEtuList() async {
     return await Firestore.instance
         .collection('UserData')
@@ -153,6 +176,33 @@ class DatabaseService {
               isEqualTo: "departmentChief",
             )
             .getDocuments();
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //-----------------For Scan transaction
+  Future scanPaymentAction(String scanResult) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    //print(uid);
+    try {
+      if (scanResult == "Launch100") {
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-100),
+        });
+      } else if (scanResult == "breakFast50") {
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-50),
+        });
+      } else if (scanResult == "rent3000") {
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-3000),
+        });
       } else {
         return null;
       }

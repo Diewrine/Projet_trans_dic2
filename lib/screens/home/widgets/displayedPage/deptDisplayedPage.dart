@@ -1,21 +1,19 @@
-import 'dart:io';
+
 
 import 'package:flutter/material.dart';
 
 import '../../editProfil.dart';
 
 class DeptDisplayedPage extends StatefulWidget {
-  final File newProfilImage;
-  final Function getImageProfilNupload;
-  DeptDisplayedPage(this.newProfilImage,this.getImageProfilNupload);
+  
+  DeptDisplayedPage();
   @override
-  _DeptDisplayedPageState createState() => _DeptDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
+  _DeptDisplayedPageState createState() => _DeptDisplayedPageState();
 }
 
 class _DeptDisplayedPageState extends State<DeptDisplayedPage> {
-  final File newProfilImage;
-  Function getImageProfilNupload;
-  _DeptDisplayedPageState(this.newProfilImage,this.getImageProfilNupload);
+ 
+  _DeptDisplayedPageState();
 
   @override
   Widget build(BuildContext context) {

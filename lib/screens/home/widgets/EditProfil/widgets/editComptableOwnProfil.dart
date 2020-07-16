@@ -60,8 +60,13 @@ class _EditComptableProfilState extends State<EditComptableProfil> {
                         user.dept,
                         user.classe,
                         user.pMoney,
+<<<<<<< HEAD
                         user.accountActivated,
                         user.profilPhoto);
+=======
+                        user.urlPhoto,
+                        user.accountActivated);
+>>>>>>> 67440c4855c22ff95eea4619e62d960c799ed7cb
                   }
                   Navigator.pop(context);
                 }),

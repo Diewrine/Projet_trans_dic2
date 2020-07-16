@@ -107,9 +107,14 @@ class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
                         currentDepartment ?? user.dept,
                         currentClasse ?? user.classe,
                         user.pMoney,
+<<<<<<< HEAD
                         user.accountActivated,
                         user.profilPhoto);
                     
+=======
+                        user.urlPhoto,
+                        user.accountActivated);
+>>>>>>> 67440c4855c22ff95eea4619e62d960c799ed7cb
                   }
                   Navigator.pop(context);
                   

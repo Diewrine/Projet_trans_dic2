@@ -11,6 +11,7 @@ class UserData {
   final String dept;
   final String fullname;
   final String jobFunction;
+  final String urlPhoto;
   final double pMoney;
  String profilPhoto;
 
@@ -21,6 +22,11 @@ class UserData {
       this.dept,
       this.fullname,
       this.jobFunction,
+<<<<<<< HEAD
       this.pMoney,
       this.profilPhoto});
+=======
+      this.urlPhoto,
+      this.pMoney});
+>>>>>>> 67440c4855c22ff95eea4619e62d960c799ed7cb
 }
