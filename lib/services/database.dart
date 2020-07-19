@@ -110,15 +110,23 @@ class DatabaseService {
   Future etuTreansfertPMoney(String uidUser, double pMoney) async {
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final double solde = document.data["pMoney"];
     //print(uid);
     try {
-      await userCollection.document(uidUser).updateData({
-        'pMoney': FieldValue.increment(pMoney),
-      });
-      await userCollection.document(uid).updateData({
-        'pMoney': FieldValue.increment(-pMoney),
-      });
-      return userData;
+      if (solde >= pMoney) {
+        await userCollection.document(uidUser).updateData({
+          'pMoney': FieldValue.increment(pMoney),
+        });
+        await userCollection.document(uid).updateData({
+          'pMoney': FieldValue.increment(-pMoney),
+        });
+        return userData;
+      } else {
+        // print(
+        //     "**************\n**************\n**************\n**************\n");
+        return null;
+      }
     } catch (e) {
       print(e.toString());
       return null;
@@ -170,6 +178,11 @@ class DatabaseService {
               isEqualTo: "departmentChief",
             )
             .getDocuments();
+      } else if (jobFunction == "Admin") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("jobFunction")
+            .getDocuments();
       } else {
         return null;
       }
@@ -183,23 +196,130 @@ class DatabaseService {
   Future scanPaymentAction(String scanResult) async {
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
-    //print(uid);
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final double solde = document.data["pMoney"];
+    //print(solde);
     try {
-      if (scanResult == "Launch100") {
+      if (scanResult == "Launch100" && solde >= 100.0) {
         await userCollection.document(uid).updateData({
           'pMoney': FieldValue.increment(-100),
         });
-      } else if (scanResult == "breakFast50") {
+      } else if (scanResult == "breakFast50" && solde >= 50.0) {
         await userCollection.document(uid).updateData({
           'pMoney': FieldValue.increment(-50),
         });
-      } else if (scanResult == "rent3000") {
+      } else if (scanResult == "rent3000" && solde >= 3000.0) {
         await userCollection.document(uid).updateData({
           'pMoney': FieldValue.increment(-3000),
         });
       } else {
         return null;
       }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+// Collection reference for User
+  final CollectionReference presenceCollection =
+      Firestore.instance.collection('presenceLogsData');
+
+//Scan for presence service
+  scanPresenceClass(String scanResult, DateTime currentDate) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final String jobFunction = document.data["jobFunction"];
+    final String fullname = document.data["fullname"];
+    final String userClasse = document.data["classe"];
+    final String userDept = document.data["dept"];
+    final String presence = "Present";
+    final String absence = "Absent";
+
+    try {
+      if (scanResult == "EXiTcLasSDIC2" && userClasse == "D.I.C.2") {
+        return await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': currentDate,
+          'prensence': absence,
+          "classe": "D.I.C.2",
+          "dept": userDept,
+        });
+      } else if (scanResult == "eNtrycLaSsDIC2" && userClasse == "D.I.C.2") {
+        return await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': null,
+          'entryDate': currentDate,
+          'prensence': presence,
+          "classe": "D.I.C.2",
+          "dept": userDept,
+        });
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //For presence List
+  listPresence() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final String jobFunction = document.data["jobFunction"];
+    final String studentClass = document.data["classe"];
+    final String userDept = document.data["dept"];
+
+    print(userDept);
+    try {
+      if (jobFunction == "Etudiant") {
+        return await Firestore.instance
+            .collection('presenceLogsData')
+            .orderBy("entryDate")
+            .where(
+              "classe",
+              isEqualTo: studentClass,
+            )
+            .where("dept", isEqualTo: userDept)
+            .getDocuments();
+      } else if (jobFunction == "Professeur") {
+        return await Firestore.instance
+            .collection('presenceLogsData')
+            .orderBy("entryDate")
+            .where(
+              "classe",
+              isEqualTo: "D.I.C.2",
+            )
+            .where(
+              "dept",
+              isEqualTo: userDept,
+            )
+            .getDocuments();
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+//For Admin
+  Future manageAccount(String uidUser) async {
+    final DocumentSnapshot document =
+        await userCollection.document(uidUser).get();
+    final bool accountStatus = document.data["acountActivated"];
+    //print(uid);
+    try {
+      await userCollection.document(uidUser).updateData({
+        'acountActivated': !accountStatus,
+      });
+      return document;
     } catch (e) {
       print(e.toString());
       return null;

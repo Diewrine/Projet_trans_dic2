@@ -1,5 +1,3 @@
-import 'package:dic2_project_trans/screens/authPage/signUpPage.dart';
-import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -203,16 +201,8 @@ class _LoginPageState extends State<LoginPage> {
                                                   setState(() {
                                                     error =
                                                         'Les identifiants sont incorrects';
-                                                    loading = true;
+                                                    loading = false;
                                                   });
-                                                } 
-                                                
-                                                else {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              Home()));
                                                 }
                                               }
                                             },
@@ -239,11 +229,7 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                             ),
                                             onPressed: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          SignUpPage()));
+                                              widget.toggleView();
                                             },
                                           ),
                                         ),

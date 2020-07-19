@@ -46,7 +46,6 @@ class _ProfilePageState extends State<ProfilePage> {
     }
 
     Future uploadPic(BuildContext context) async {
-      //String fileName = basename(_image.path);
       try {
         StorageReference firebaseStorageRef =
             FirebaseStorage.instance.ref().child(uid);
@@ -73,12 +72,6 @@ class _ProfilePageState extends State<ProfilePage> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              // dynamic result = databaseService.updatePhoto(url);
-              // if (result != null) {
-              //   print("ok");
-              // } else {
-              //   print("echec");
-              // }
               Navigator.pop(context);
             }),
         title: Text('Edit Profile'),

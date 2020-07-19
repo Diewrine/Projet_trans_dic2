@@ -17,6 +17,8 @@ class _EtuMoneyState extends State<EtuMoney> {
   double montant;
   String _montant = "";
   String _uid;
+  String text1 = 'Opération réussie.';
+  String text2 = 'Votre transfert a été fait avec succés. Merci !';
 
   //Function
   void receiveName(String name, String uid) {
@@ -188,15 +190,17 @@ class _EtuMoneyState extends State<EtuMoney> {
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 montant = double.tryParse(_montant);
                                 //-------------
                                 if (montant != null && _destinataire != "") {
-                                  dynamic result = databaseService
+                                  dynamic result = await databaseService
                                       .etuTreansfertPMoney(_uid, montant);
                                   if (result != null) {
+                                    _showMyDialog(text1, text2);
                                   } else {
-                                    print("Errorr dans la bd");
+                                    _showMyDialog("Echec de l'opération",
+                                        "\nVotre compte est insuffisant. \n Veuillez rechercher svp!");
                                   }
 
                                   setState(() {
@@ -221,5 +225,47 @@ class _EtuMoneyState extends State<EtuMoney> {
             return Loading();
           }
         });
+  }
+
+  Future<void> _showMyDialog(String text1, String text2) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Transfert pMoney'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  text1,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  text2,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Retour'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return EtuMoney();
+                      },
+                      fullscreenDialog: true,
+                    ));
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

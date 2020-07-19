@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/screens/home/menuItem/presenceList.dart';
 import 'package:flutter/material.dart';
 
 class MenuItem extends StatefulWidget {
@@ -29,19 +30,38 @@ class _MenuItemState extends State<MenuItem> {
                             spreadRadius: 6,
                             blurRadius: 4)
                       ]),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Icon(
-                          Icons.dashboard,
-                          color: Colors.white,
+                  child: SingleChildScrollView(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Column(
+                          children: <Widget>[
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                        return PresenceList();
+                                      },
+                                      fullscreenDialog: true,
+                                    ));
+                              },
+                              color: Colors.white,
+                              icon: Icon(
+                                Icons.dashboard,
+                                size: 17,
+                              ),
+                            ),
+                            Center(
+                              child: Text(
+                                'Présence',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          ],
                         ),
-                        Text(
-                          'Menu 1',
-                          style: TextStyle(color: Colors.white),
-                        )
-                      ],
+                      ),
                     ),
                   ),
                 ),

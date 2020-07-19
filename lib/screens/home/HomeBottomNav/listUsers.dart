@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dic2_project_trans/screens/home/widgets/bottomNav.dart';
+//import 'package:dic2_project_trans/screens/home/widgets/bottomNav.dart';
 import 'package:dic2_project_trans/services/database.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -29,14 +29,24 @@ class _ListUserPageState extends State<ListUserPage> {
       appBar: AppBar(
         title: Text("Comptes existants"),
         backgroundColor: Colors.indigo,
-        leading: Icon(
-          Icons.view_list,
-          size: 27,
-          color: Colors.white,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            size: 27,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        // Icon(
+        //   Icons.view_list,
+        //   size: 27,
+        //   color: Colors.white,
+        // ),
       ),
       body: _usersList(),
-      bottomNavigationBar: BottomNav(currentIndex: 1),
+      //bottomNavigationBar: BottomNav(currentIndex: 1),
     );
   }
 
@@ -47,9 +57,18 @@ class _ListUserPageState extends State<ListUserPage> {
         padding: EdgeInsets.all(8.0),
         itemBuilder: (context, i) {
           return new ListTile(
-            title: Text(usersList.documents[i].data["fullname"]),
-            subtitle: Text("Subtitle"),
-            leading: Image.asset("assets/avatar.jpg"),
+            title: Text(
+              usersList.documents[i].data["fullname"],
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            subtitle: Text(
+              usersList.documents[i].data["jobFunction"],
+            ),
+            leading: (usersList.documents[i].data["urlPhoto"] == null)
+                ? Image.asset("assets/iconProfil.png")
+                : Image.network(
+                    usersList.documents[i].data["urlPhoto"],
+                  ),
           );
         },
       );

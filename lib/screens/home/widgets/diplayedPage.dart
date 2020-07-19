@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/screens/home/widgets/displayedPage/adminDisplayPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/comptaDisplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/deptDisplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/etuDisplayedPage.dart';
@@ -28,6 +29,8 @@ class _DisplayedPageState extends State<DisplayedPage> {
       return ComptaDisplayedPage(uid: userUid, name: name);
     } else if (userJob == "departmentChief") {
       return DeptDisplayedPage();
+    } else if (userJob == "Admin") {
+      return AdminPage();
     } else {
       return Loading();
     }

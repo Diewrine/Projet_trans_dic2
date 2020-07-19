@@ -1,5 +1,5 @@
 import 'package:dic2_project_trans/screens/home/HomeBottomNav/listUsers.dart';
-import 'package:dic2_project_trans/screens/home/home.dart';
+//import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
@@ -28,14 +28,14 @@ class _BottomNavState extends State<BottomNav> {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return Home();
-                    },
-                    fullscreenDialog: true,
-                  ));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (BuildContext context) {
+              //         return Home();
+              //       },
+              //       fullscreenDialog: false,
+              //     ));
             },
           ),
           title: Text(
@@ -44,24 +44,19 @@ class _BottomNavState extends State<BottomNav> {
           ),
         ),
         BottomNavigationBarItem(
-          // icon: Icon(
-          //   Icons.group,
-          //   color: Colors.white,
-          // ),
           icon: IconButton(
               icon: Icon(
                 Icons.group,
                 color: Colors.white,
               ),
               onPressed: () {
-                //------------------
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (BuildContext context) {
                         return ListUserPage();
                       },
-                      fullscreenDialog: true,
+                      fullscreenDialog: false,
                     ));
 
                 //----------------------

@@ -1,25 +1,26 @@
+import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
+import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageAccount.dart';
+import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:flutter/material.dart';
 
-import '../../editProfil.dart';
-
-class ProfDisplayedPage extends StatefulWidget {
+class AdminPage extends StatefulWidget {
   @override
-  _ProfDisplayedPageState createState() => _ProfDisplayedPageState();
+  _AdminPageState createState() => _AdminPageState();
 }
 
-class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
+class _AdminPageState extends State<AdminPage> {
+  void _showModalPanel() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            child: EditProfil(),
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    void _showModalPanel() {
-      showModalBottomSheet(
-          context: context,
-          builder: (context) {
-            return Container(
-              child: EditProfil(),
-            );
-          });
-    }
-
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +44,12 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
                     Icons.person,
                   ),
                   color: Colors.white,
-                  onPressed: _showModalPanel,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
                 ),
                 Text(
                   "Modifier\nle profil",
@@ -71,18 +77,19 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
             child: Column(
               children: <Widget>[
                 IconButton(
-                  //Icons.crop_free,
-                  //Icons.flip,
-                  //Icons.fullscreen,
-                  //Icons.sensor_window,
                   icon: Icon(
-                    Icons.ac_unit,
+                    Icons.build,
                   ),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ManageAccount()),
+                    );
+                  },
                 ),
                 Text(
-                  'Menu\nProf',
+                  'Gestion  \ndes comptes',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -108,13 +115,13 @@ class _ProfDisplayedPageState extends State<ProfDisplayedPage> {
               children: <Widget>[
                 IconButton(
                   icon: Icon(
-                    Icons.assignment,
+                    Icons.attach_money,
                   ),
                   color: Colors.white,
                   onPressed: () {},
                 ),
                 Text(
-                  "Gestion\nAbsence",
+                  "Liste des\ncomptes",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,

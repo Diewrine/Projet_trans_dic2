@@ -15,6 +15,10 @@ class _ScannerState extends State<Scanner> {
   bool colorTextScan = false;
   String textScan = "";
   QRViewController controller;
+  String text1 = 'Opération réussie.';
+  String text2 = 'Votre profil a été mis à jour. Merci !';
+
+  DateTime _currentDate = new DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,22 @@ class _ScannerState extends State<Scanner> {
         colorTextScan = false;
         textScan = "";
       });
-    } else {
+    }
+    //---------------
+    else if (qrText == "eNtrycLaSsDIC2") {
+      setState(() {
+        colorTextScan = true;
+        textScan =
+            "Enregistrez votre heure d'entrée.\nSinon, vous serez considérez absent (e)";
+      });
+    } else if (qrText == "EXiTcLasSDIC2") {
+      setState(() {
+        colorTextScan = true;
+        textScan = "Enregistrez votre heure de sortie.\n";
+      });
+    }
+    //-------------------
+    else {
       setState(() {
         colorTextScan = false;
         textScan = "Ce QRcode n'est pas pris en charge";
@@ -49,6 +68,22 @@ class _ScannerState extends State<Scanner> {
     //---------------------
     return Scaffold(
       backgroundColor: Colors.indigo[100],
+      appBar: AppBar(
+        // elevation: 0.0,
+
+        title: Text("San !"),
+        backgroundColor: Colors.indigo,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            size: 27,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -88,22 +123,35 @@ class _ScannerState extends State<Scanner> {
                     )),
 
                 color: colorSet ? Colors.greenAccent[400] : Colors.indigo[400],
-                onPressed: () {
+                onPressed: () async {
                   if (qrText == null) {
                     setState(() {
                       colorTextScan = true;
-                      textScan = "Scan incomplet !";
+                      textScan = "Scan non achevé !";
                     });
-                  } else {
-                    dynamic result = databaseService.scanPaymentAction(qrText);
+                  } else if (qrText == "eNtrycLaSsDIC2" ||
+                      qrText == "EXiTcLasSDIC2") {
+                    dynamic result = await databaseService.scanPresenceClass(
+                        qrText, _currentDate);
                     if (result != null) {
-                      _showMyDialog();
+                      _showMyDialog(text1, text2);
                     } else {
                       setState(() {
                         colorTextScan = true;
                         textScan =
-                            "L'opération n'a pas abouti !\nVeuillez ressayer";
+                            "Vous n'êtes pas à la bonne classe !\nVeuillez ressayer";
                       });
+                      _showMyDialog(
+                          "Echec", "Vous n'êtes pas à la bonne classe.");
+                    }
+                  } else {
+                    dynamic result =
+                        await databaseService.scanPaymentAction(qrText);
+                    if (result != null) {
+                      _showMyDialog(text1, text2);
+                    } else {
+                      _showMyDialog("Echec de l'opération",
+                          "Votre solde est insuffisant.\nVeuillez recharger votre compte.");
                     }
                   }
                 },
@@ -146,7 +194,7 @@ class _ScannerState extends State<Scanner> {
     });
   }
 
-  Future<void> _showMyDialog() async {
+  Future<void> _showMyDialog(String text1, String text2) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -157,10 +205,12 @@ class _ScannerState extends State<Scanner> {
             child: ListBody(
               children: <Widget>[
                 Text(
-                  'Opération réussie.',
+                  text1,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
-                Text('Votre compte a été mis à jour. Merci !'),
+                Text(
+                  text2,
+                ),
               ],
             ),
           ),

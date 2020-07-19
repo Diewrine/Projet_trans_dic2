@@ -1,5 +1,6 @@
 import 'package:dic2_project_trans/models/user.dart';
-import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
+//import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
+import 'package:dic2_project_trans/screens/wrapper.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LoginPage(),
+        home: Wrapper(),
       ),
     );
   }
