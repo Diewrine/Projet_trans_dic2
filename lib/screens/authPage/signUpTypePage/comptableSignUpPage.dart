@@ -1,15 +1,14 @@
+//import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  final Function toggleView;
-  LoginPage({this.toggleView});
+class CompatbleSignUp extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _CompatbleSignUpState createState() => _CompatbleSignUpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CompatbleSignUpState extends State<CompatbleSignUp> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
@@ -17,6 +16,11 @@ class _LoginPageState extends State<LoginPage> {
   //text Fields
   String email = "";
   String password = "";
+  String fullname = "";
+
+  // jobFunction
+  String jobFunction = "";
+  int pMoney = 0;
 
   // for error
   String error = "";
@@ -26,35 +30,13 @@ class _LoginPageState extends State<LoginPage> {
     return loading
         ? Loading()
         : Scaffold(
-            //resizeToAvoidBottomInset: false,
-
             backgroundColor: Colors.indigo,
-            //backgroundColor: Color(0xff21254a),
-
             body: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    //color: Colors.red,  BoxDecoration
-                    height: 150,
-                    child: Stack(
-                      children: <Widget>[
-                        Positioned(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("assets/1.png"),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -62,21 +44,31 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Bienvenue, \nConnectez-vous!",
+                          "Bienvenue! \nCréer votre compte",
                           style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
+                          height: 15,
+                        ),
+                        Center(
+                          child: Text(
+                            "Compte comptable",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
                           height: 10,
                         ),
-                        //----------------
-
                         Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 0.0, horizontal: 25.0),
-                            //color: Colors.orange[50],
+
                             //Formulaire
                             child: Form(
                               key: _formKey,
@@ -102,10 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                                           // TextFormField
 
                                           child: TextFormField(
+                                            //decoration
                                             validator: (value) => value.isEmpty
                                                 ? "L'adresse mail est obligatoire"
                                                 : null,
-                                            //decoration
                                             keyboardType:
                                                 TextInputType.emailAddress,
                                             style:
@@ -125,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                             },
                                           ),
                                         ),
+
                                         SizedBox(
                                           height: 10.0,
                                         ),
@@ -147,7 +140,8 @@ class _LoginPageState extends State<LoginPage> {
                                             obscureText: true,
                                             decoration: InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: "Password",
+                                              hintText:
+                                                  "Password(min 6 caractères) ",
                                               hintStyle: TextStyle(
                                                 color: Colors.grey,
                                               ),
@@ -159,80 +153,100 @@ class _LoginPageState extends State<LoginPage> {
                                             },
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 10.0,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(0.0),
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: Colors.grey[100],
+                                              ),
+                                            ),
+                                          ),
+                                          child: TextFormField(
+                                            validator: (value) => value.isEmpty
+                                                ? "Ce champ est obligatoire"
+                                                : null,
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: "Fullname ",
+                                              hintStyle: TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            onChanged: (value) {
+                                              setState(() {
+                                                fullname = value;
+                                              });
+                                            },
+                                          ),
+                                        ),
+
                                         // end of fields
                                         SizedBox(
                                           height: 20.0,
                                         ),
-
-                                        Center(
-                                          child: Text(
-                                            "Mot de passe oublié?",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        // mot de passe oublié
-
-                                        SizedBox(
-                                          height: 10.0,
-                                        ),
-
-                                        Center(
-                                          child: RaisedButton(
-                                            color:
-                                                Color.fromRGBO(49, 39, 79, 1),
-                                            elevation: 0.0,
-                                            child: Text(
-                                              "Se connecter",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            onPressed: () async {
-                                              if (_formKey.currentState
-                                                  .validate()) {
-                                                setState(() {
-                                                  loading = true;
-                                                });
-                                                dynamic result = await _auth
-                                                    .signIn(email, password);
-                                                if (result == null) {
-                                                  setState(() {
-                                                    error =
-                                                        'Les identifiants sont incorrects';
-                                                    loading = false;
-                                                  });
-                                                }
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                        //Raise Button se Connecter
-
                                         Text(
                                           error,
                                           style: TextStyle(color: Colors.red),
                                         ),
                                         SizedBox(
-                                          height: 5.0,
+                                          height: 10.0,
                                         ),
                                         Center(
                                           child: RaisedButton(
-                                            color: Colors.transparent,
-                                            elevation: 0.0,
-                                            child: Text(
-                                              "Créer Compte",
-                                              style: TextStyle(
-                                                color: Colors
-                                                    .white, //Colors.pink[200],
+                                              color:
+                                                  Color.fromRGBO(49, 39, 79, 1),
+                                              elevation: 0.0,
+                                              child: Text(
+                                                "Soumettre",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
                                               ),
-                                            ),
-                                            onPressed: () {
-                                              widget.toggleView();
-                                            },
-                                          ),
+                                              onPressed: () async {
+                                                setState(() {
+                                                  jobFunction = "Comptable";
+                                                });
+
+                                                if (_formKey.currentState
+                                                    .validate()) {
+                                                  // setState(() {
+                                                  //   // error = '';
+                                                  //   loading = false;
+                                                  // });
+
+                                                  setState(() {
+                                                    error = '';
+                                                    loading = true;
+                                                  });
+
+                                                  dynamic result =
+                                                      await _auth.register(
+                                                          email,
+                                                          password,
+                                                          fullname,
+                                                          jobFunction,
+                                                          null,
+                                                          null,
+                                                          0);
+                                                  if (result == null) {
+                                                    setState(() {
+                                                      error =
+                                                          'Inscription refusée! \nVérifiez vos données svp';
+                                                      loading = false;
+                                                    });
+                                                  } else {
+                                                    print("errorrr");
+                                                  }
+                                                }
+                                              }),
                                         ),
+                                        //Raise Button se Connecter
                                       ],
                                     ),
                                   ),

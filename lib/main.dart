@@ -1,4 +1,5 @@
 import 'package:dic2_project_trans/models/user.dart';
+//import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
 import 'package:dic2_project_trans/screens/wrapper.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -25,26 +26,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// HomePage
-// class MyHomePage extends StatefulWidget {
-//   MyHomePage({Key key, this.title}) : super(key: key);
-
-//   final String title;
-
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage>
-//     with SingleTickerProviderStateMixin {
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Wrapper();
-//   }
-// }

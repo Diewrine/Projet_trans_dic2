@@ -1,4 +1,5 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -7,6 +8,11 @@ class AuthService {
   // create user object based on FirebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(user.uid) : null;
+  }
+
+  // get current user
+  Future getCurrentUserId() async {
+    return (await _auth.currentUser()).uid;
   }
 
   // auth change user Stream
@@ -28,11 +34,22 @@ class AuthService {
   }
 
   // register with email and password
-  Future register(String email, String password) async {
+  Future register(String email, String password, String fullname,
+      String jobFunction, String dept, String classe, double pMoney) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+      await DatabaseService(uid: user.uid).updateUserData(
+        fullname = fullname,
+        jobFunction = jobFunction,
+        dept = dept,
+        classe = classe,
+        pMoney = pMoney,
+        null,
+        false,
+      );
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
@@ -46,6 +63,7 @@ class AuthService {
       AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+
       return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
