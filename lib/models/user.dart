@@ -6,7 +6,7 @@ class User {
 
 class UserData {
   final String uid;
-  final String accountActivated;
+  final bool accountActivated;
   final String classe;
   final String dept;
   final String fullname;

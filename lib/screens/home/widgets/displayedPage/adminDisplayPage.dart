@@ -1,4 +1,4 @@
-import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
+// import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
 import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageAccount.dart';
 import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +9,6 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-  void _showModalPanel() {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container(
-            child: EditProfil(),
-          );
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

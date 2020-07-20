@@ -1,8 +1,9 @@
+import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
 import 'package:dic2_project_trans/screens/pMoney/transfertHistoric.dart';
 import 'package:flutter/material.dart';
 
-import '../../editProfil.dart';
+//import '../../editProfil.dart';
 
 class ComptaDisplayedPage extends StatefulWidget {
   final String uid;

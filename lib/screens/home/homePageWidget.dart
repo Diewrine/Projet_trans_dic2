@@ -1,4 +1,5 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
 import 'package:dic2_project_trans/screens/home/widgets/diplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/menuItem.dart';
 import 'package:dic2_project_trans/screens/home/widgets/userProfilImageView.dart';
@@ -15,6 +16,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    void _showModalPanel(UserData user) {
+      showBottomSheet(
+          //showModalBottomSheet
+          //isScrollControlled: true,
+
+          context: context,
+          builder: (context) {
+            return Container(
+              child: EditProfil(
+                userData: user,
+              ),
+            );
+          });
+    }
+
     final user = Provider.of<User>(context);
 
     return StreamBuilder<UserData>(
@@ -28,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(top: 10.0),
+                    padding: EdgeInsets.only(top: 5.0),
                     width: MediaQuery.of(context).size.width,
                     height: (MediaQuery.of(context).size.height / 2),
                     decoration: BoxDecoration(
@@ -77,24 +93,48 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.w300,
                                 fontSize: 20),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: Text(
-                              userData.fullname,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Align(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 3.0),
+                                  child: Text(
+                                    userData.fullname,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(bottom: 3.0, right: 1.0),
+                                child: IconButton(
+                                  tooltip: "Upload",
+                                  icon: Icon(
+                                    Icons.edit,
+                                    color: Colors.white,
+                                    //size: 10.0,
+                                  ),
+                                  onPressed: () {
+                                    _showModalPanel(userData);
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                           Padding(
                             // padding: const EdgeInsets.only(left: 20, right: 20),
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             // child: DisplayedPage(),
                             child: DisplayedPage(
+                                userData: userData,
                                 joFunction: userData.jobFunction,
                                 uid: user.uid,
-                                name: userData.fullname),
+                                name: userData.fullname,
+                                accountStatus: userData.accountActivated),
                           ),
                         ],
                       ),
@@ -104,7 +144,8 @@ class _HomePageState extends State<HomePage> {
                   // Menu item
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 50, horizontal: 10),
-                    child: SingleChildScrollView(child: MenuItem()),
+                    child: SingleChildScrollView(
+                        child: MenuItem(userData: userData)),
                   )
                 ],
               ),

@@ -56,19 +56,22 @@ class _ListUserPageState extends State<ListUserPage> {
         itemCount: usersList.documents.length,
         padding: EdgeInsets.all(8.0),
         itemBuilder: (context, i) {
-          return new ListTile(
-            title: Text(
-              usersList.documents[i].data["fullname"],
-              style: TextStyle(fontWeight: FontWeight.w500),
+          return Card(
+            child: new ListTile(
+              dense: true,
+              title: Text(
+                usersList.documents[i].data["fullname"],
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              subtitle: Text(
+                usersList.documents[i].data["jobFunction"],
+              ),
+              leading: (usersList.documents[i].data["urlPhoto"] == null)
+                  ? Image.asset("assets/iconProfil.png")
+                  : Image.network(
+                      usersList.documents[i].data["urlPhoto"],
+                    ),
             ),
-            subtitle: Text(
-              usersList.documents[i].data["jobFunction"],
-            ),
-            leading: (usersList.documents[i].data["urlPhoto"] == null)
-                ? Image.asset("assets/iconProfil.png")
-                : Image.network(
-                    usersList.documents[i].data["urlPhoto"],
-                  ),
           );
         },
       );

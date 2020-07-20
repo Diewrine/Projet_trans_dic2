@@ -68,7 +68,6 @@ class _ManageAccountState extends State<ManageAccount> {
                   dynamic result = await databaseService
                       .manageAccount(usersList.documents[i].data["uid"]);
 
-                  print(result);
                   if (result != null) {
                     Navigator.pop(context);
                     Navigator.push(

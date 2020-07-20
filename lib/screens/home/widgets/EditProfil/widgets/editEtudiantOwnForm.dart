@@ -40,51 +40,53 @@ class _EditEtudiantOwnFormState extends State<EditEtudiantOwnForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: <Widget>[
-            Text(
-              'Modifier votre profil',
-              style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            TextFormField(
-              decoration: formDecoration,
-              initialValue: user.fullname,
-              validator: (value) => value.isEmpty ? 'Entrez votre nom' : null,
-              onChanged: (val) => setState(() => currentFullname = val),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            RaisedButton(
-                child: Text(
-                  'Enregistrer',
-                  style: TextStyle(
-                    color: Colors.white,
+      child: Center(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Modifier votre profil',
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              TextFormField(
+                decoration: formDecoration,
+                initialValue: user.fullname,
+                validator: (value) => value.isEmpty ? 'Entrez votre nom' : null,
+                onChanged: (val) => setState(() => currentFullname = val),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              RaisedButton(
+                  child: Text(
+                    'Enregistrer',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                color: Colors.red,
-                onPressed: () async {
-                  if (_formKey.currentState.validate()) {
-                    await DatabaseService(uid: user.uid).updateUserData(
-                        currentFullname ?? user.fullname,
-                        user.jobFunction,
-                        currentDepartment ?? user.dept,
-                        currentClasse ?? user.classe,
-                        user.pMoney,
-                        user.urlPhoto,
-                        user.accountActivated);
-                  }
-                  Navigator.pop(context);
-                }),
-          ],
+                  color: Colors.red,
+                  onPressed: () async {
+                    if (_formKey.currentState.validate()) {
+                      await DatabaseService(uid: user.uid).updateUserData(
+                          currentFullname ?? user.fullname,
+                          user.jobFunction,
+                          currentDepartment ?? user.dept,
+                          currentClasse ?? user.classe,
+                          user.pMoney,
+                          user.urlPhoto,
+                          user.accountActivated);
+                    }
+                    Navigator.pop(context);
+                  }),
+            ],
+          ),
         ),
       ),
     );

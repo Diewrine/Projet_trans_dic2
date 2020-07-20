@@ -41,32 +41,34 @@ class _PresenceListState extends State<PresenceList> {
   Widget _listPresence() {
     if (presenceList != null) {
       return SingleChildScrollView(
-        child: DataTable(
-            columns: [
-              DataColumn(label: Text("Fulname")),
-              DataColumn(label: Text("Status")),
-              DataColumn(label: Text("pointage")),
-            ],
-            rows: presenceList.documents.toList().map((e) {
-              setState(() {
-                dynamic result =
-                    DateTime.parse(e.data["entryDate"].toDate().toString());
-                _currentDate = new DateFormat.Hms().format(result);
-                print(_currentDate);
-              });
+        child: Card(
+          child: DataTable(
+              columns: [
+                DataColumn(label: Text("Fulname")),
+                DataColumn(label: Text("Status")),
+                DataColumn(label: Text("pointage")),
+              ],
+              rows: presenceList.documents.toList().map((e) {
+                setState(() {
+                  dynamic result =
+                      DateTime.parse(e.data["entryDate"].toDate().toString());
+                  _currentDate = new DateFormat.Hms().format(result);
+                  print(_currentDate);
+                });
 
-              return DataRow(cells: [
-                DataCell(
-                  Text(e.data['fullname'] ?? " "),
-                ),
-                DataCell(
-                  Text(e.data['prensence'] ?? " "),
-                ),
-                DataCell(
-                  Text(_currentDate ?? " "),
-                )
-              ]);
-            }).toList()),
+                return DataRow(cells: [
+                  DataCell(
+                    Text(e.data['fullname'] ?? " "),
+                  ),
+                  DataCell(
+                    Text(e.data['prensence'] ?? " "),
+                  ),
+                  DataCell(
+                    Text(_currentDate ?? " "),
+                  )
+                ]);
+              }).toList()),
+        ),
       );
     } else {
       return Loading2();

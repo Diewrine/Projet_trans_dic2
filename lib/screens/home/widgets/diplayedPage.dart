@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/adminDisplayPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/comptaDisplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/deptDisplayedPage.dart';
@@ -10,7 +11,14 @@ class DisplayedPage extends StatefulWidget {
   final String joFunction;
   final String uid;
   final String name;
-  DisplayedPage({this.joFunction, this.uid, this.name});
+  final bool accountStatus;
+  final UserData userData;
+  DisplayedPage(
+      {this.joFunction,
+      this.uid,
+      this.name,
+      this.accountStatus,
+      this.userData});
   @override
   _DisplayedPageState createState() => _DisplayedPageState();
 }
@@ -21,8 +29,11 @@ class _DisplayedPageState extends State<DisplayedPage> {
     final String userJob = widget.joFunction;
     final String userUid = widget.uid;
     final String name = widget.name;
+    final bool accountStatus = widget.accountStatus;
+    final UserData user = widget.userData;
     if (userJob == "Etudiant") {
-      return EtudiantDisplayedPage();
+      return EtudiantDisplayedPage(
+          accountStatus: accountStatus, userData: user);
     } else if (userJob == "Professeur") {
       return ProfDisplayedPage();
     } else if (userJob == "Comptable") {
