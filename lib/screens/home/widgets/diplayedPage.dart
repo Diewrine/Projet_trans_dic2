@@ -35,13 +35,13 @@ class _DisplayedPageState extends State<DisplayedPage> {
       return EtudiantDisplayedPage(
           accountStatus: accountStatus, userData: user);
     } else if (userJob == "Professeur") {
-      return ProfDisplayedPage();
+      return ProfDisplayedPage(accountStatus: accountStatus, userData: user);
     } else if (userJob == "Comptable") {
       return ComptaDisplayedPage(uid: userUid, name: name);
     } else if (userJob == "departmentChief") {
-      return DeptDisplayedPage();
+      return DeptDisplayedPage(accountStatus: accountStatus, userData: user);
     } else if (userJob == "Admin") {
-      return AdminPage();
+      return AdminPage(userData: user);
     } else {
       return Loading();
     }

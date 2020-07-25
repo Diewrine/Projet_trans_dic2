@@ -28,7 +28,7 @@ class DatabaseService {
       'dept': dept,
       'classe': classe,
       'pMoney': pMoney,
-      "urlPhoto": null,
+      "urlPhoto": urlPhoto ?? null,
       'acountActivated': acountActivated,
     });
   }
@@ -118,7 +118,7 @@ class DatabaseService {
     final uid = user.uid;
     final DocumentSnapshot document = await userCollection.document(uid).get();
     final double solde = document.data["pMoney"];
-    //print(uid);
+
     try {
       if (solde >= pMoney) {
         await userCollection.document(uidUser).updateData({
@@ -129,8 +129,6 @@ class DatabaseService {
         });
         return userData;
       } else {
-        // print(
-        //     "**************\n**************\n**************\n**************\n");
         return null;
       }
     } catch (e) {
@@ -326,6 +324,156 @@ class DatabaseService {
         'acountActivated': !accountStatus,
       });
       return document;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //--------------------
+
+  listUserForAdmin() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final String jobFunction = document.data["jobFunction"];
+
+    try {
+      if (jobFunction == "Admin") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where("jobFunction", whereIn: [
+          "Etudiant",
+          "Comptable",
+          "departmentChief"
+        ]).getDocuments();
+      } else if (jobFunction == "departmentChief") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where("jobFunction", isEqualTo: "Professeur")
+            .getDocuments();
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+  //-----------------
+
+  // Collection reference for admin Message
+  final CollectionReference adminMessageCollection =
+      Firestore.instance.collection('adminMessageData');
+
+  Future updateMessage(
+    String objet,
+    String message,
+  ) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    return await adminMessageCollection
+        .document(uid)
+        .setData({'object': objet, 'message': message});
+  }
+
+  //get Message
+  getAdminMessage() async {
+    return await Firestore.instance
+        .collection('adminMessageData')
+        .getDocuments();
+  }
+
+// For DEPARTMENTS INFO
+  final CollectionReference deptInfoCollection =
+      Firestore.instance.collection('DeptInfoData');
+
+  Future updateDeptInfoData(
+    String deptName,
+    String deptChief,
+    String resp1,
+    String resp2,
+    String resp3,
+  ) async {
+    if (deptName == "G.I.T") {
+      return await deptInfoCollection
+          .document("5SFLS4voexRoZvMeWBe50ts5tv03")
+          .setData({
+        "deptName": deptName,
+        "deptChief": deptChief,
+        "responsable1": resp1,
+        "responsable2": resp2,
+        "responsable3": resp3,
+      });
+    } else if (deptName == "G.E.M") {
+      return await deptInfoCollection.document("gZr2tGSAHdA8hopXFbzz").setData({
+        "deptName": deptName,
+        "deptChief": deptChief,
+        "responsable1": resp1,
+        "responsable2": resp2,
+        "responsable3": resp3,
+      });
+    } else if (deptName == "G.C") {
+      return await deptInfoCollection.document("B33j4JHtBPlp49t4C039").setData({
+        "deptName": deptName,
+        "deptChief": deptChief,
+        "responsable1": resp1,
+        "responsable2": resp2,
+        "responsable3": resp3,
+      });
+    } else if (deptName == "T.C") {
+      return await deptInfoCollection.document("kTFgLLOZClXNMt7D5lia").setData({
+        "deptName": deptName,
+        "deptChief": deptChief,
+        "responsable1": resp1,
+        "responsable2": resp2,
+        "responsable3": null,
+      });
+    } else {
+      return null;
+    }
+  }
+
+  //Get deptInfo
+  getDeptInfo(String dept) async {
+    if (dept == "G.I.T") {
+      return await Firestore.instance
+          .collection('DeptInfoData')
+          .where("deptName", isEqualTo: "G.I.T")
+          .getDocuments();
+    } else if (dept == "G.E.M") {
+      return await Firestore.instance
+          .collection('DeptInfoData')
+          .where("deptName", isEqualTo: "G.E.M")
+          .getDocuments();
+    } else if (dept == "G.C") {
+      return await Firestore.instance
+          .collection('DeptInfoData')
+          .where("deptName", isEqualTo: "G.C")
+          .getDocuments();
+    } else if (dept == "T.C") {
+      return await Firestore.instance
+          .collection('DeptInfoData')
+          .where("deptName", isEqualTo: "T.C")
+          .getDocuments();
+    } else {
+      return null;
+    }
+  }
+
+  //--List User for dept
+
+  getUserInfo(UserData user, String option) async {
+    final String deptName = user.dept;
+
+    try {
+      return await Firestore.instance
+          .collection('UserData')
+          .orderBy("fullname")
+          .where("dept", isEqualTo: deptName)
+          .where("jobFunction", isEqualTo: option)
+          .where("acountActivated", isEqualTo: true)
+          .getDocuments();
     } catch (e) {
       print(e.toString());
       return null;

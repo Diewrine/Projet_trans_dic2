@@ -1,4 +1,5 @@
 import 'package:dic2_project_trans/screens/home/HomeBottomNav/listUsers.dart';
+import 'package:dic2_project_trans/screens/home/HomeBottomNav/messageAdminPage.dart';
 //import 'package:dic2_project_trans/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +19,8 @@ class _BottomNavState extends State<BottomNav> {
       currentIndex: _currentIndex,
       backgroundColor: Colors.indigo[500],
       iconSize: 30.0,
-      unselectedFontSize: 9.0,
-      selectedFontSize: 15,
+      unselectedFontSize: 11.0,
+      selectedFontSize: 11,
       items: [
         BottomNavigationBarItem(
           icon: IconButton(
@@ -62,17 +63,28 @@ class _BottomNavState extends State<BottomNav> {
                 //----------------------
               }),
           title: Text(
-            'Contacts',
+            'Comptess',
             style: TextStyle(color: Colors.white),
           ),
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.camera,
-            color: Colors.white,
-          ),
+          icon: IconButton(
+              icon: Icon(
+                Icons.message,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return Info();
+                      },
+                      fullscreenDialog: false,
+                    ));
+              }),
           title: Text(
-            'Item 3',
+            'Informations',
             style: TextStyle(color: Colors.white),
           ),
         ),

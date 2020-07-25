@@ -14,7 +14,7 @@ class _ManageAccountState extends State<ManageAccount> {
 
   @override
   void initState() {
-    databaseService.listUserForBottomNav().then((results) {
+    databaseService.listUserForAdmin().then((results) {
       setState(() {
         usersList = results;
       });

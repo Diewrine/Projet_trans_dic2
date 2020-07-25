@@ -171,7 +171,8 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ProfilePage()),
+                        MaterialPageRoute(
+                            builder: (context) => ProfilePage(userData: user)),
                       );
                     },
                     //_showModalPanel,

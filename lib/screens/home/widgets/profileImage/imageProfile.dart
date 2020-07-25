@@ -42,9 +42,6 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final UserData user = widget.userData;
-    // setState(() {
-    //   fullname = user.fullname;
-    // });
 
     Future getImage() async {
       var image = await ImagePicker.pickImage(source: ImageSource.gallery);
@@ -136,71 +133,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 25.0,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.all(10.0),
-                //   child: Card(
-                //       elevation: 0.0,
-                //       color: Colors.transparent,
-                //       margin: EdgeInsets.symmetric(horizontal: 20),
-                //       borderOnForeground: true,
-                //       child: Container(
-                //         child: Form(
-                //           key: _formKey,
-                //           child: Column(
-                //             children: <Widget>[
-                //               Column(
-                //                 children: <Widget>[
-                //                   Container(
-                //                     padding: EdgeInsets.symmetric(
-                //                         horizontal: 15, vertical: 3),
-                //                     decoration: BoxDecoration(
-                //                       border: Border(
-                //                         bottom: BorderSide(
-                //                           color: Colors.grey[100],
-                //                         ),
-                //                       ),
-                //                     ),
-                //                     child: Center(
-                //                       child: TextFormField(
-                //                         validator: (value) => value.isEmpty
-                //                             ? "Ce champ est obligatoire"
-                //                             : null,
-                //                         style: TextStyle(
-                //                           fontWeight: FontWeight.w700,
-                //                         ),
-                //                         decoration: InputDecoration(
-                //                           hintText: user.fullname,
-                //                           labelText: "fullname",
-                //                           border: OutlineInputBorder(),
-                //                         ),
-                //                         initialValue: user.fullname,
-                //                         onChanged: (value) {
-                //                           setState(() {
-                //                             fullname = value;
-                //                           });
-                //                         },
-                //                       ),
-                //                     ),
-                //                   ),
-                //                   SizedBox(
-                //                     height: 50,
-                //                   ),
-                //                   Container(
-                //                     child: Text("data"),
-                //                   ),
-                //                   //*********** */
-                //                 ],
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //       )),
-                // ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -217,71 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text(user.fullname,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('département',
-                                  style: TextStyle(
-                                      color: Colors.blueGrey, fontSize: 18.0)),
-                            ),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(user.dept,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text('classe',
-                                  style: TextStyle(
-                                      color: Colors.blueGrey, fontSize: 18.0)),
-                            ),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(user.classe,
+                              child: Text(user.fullname ?? "non renseigné",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -312,7 +183,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text(user.jobFunction,
+                              child: Text(user.jobFunction ?? " ... ",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -326,6 +197,68 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 SizedBox(
                   height: 25.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('département',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 18.0)),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(user.dept ?? " ... ",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('classe',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 18.0)),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(user.classe ?? " ... ",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

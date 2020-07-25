@@ -53,13 +53,15 @@ class _TransfertHistoricComptaState extends State<TransfertHistoricCompta> {
         itemCount: logsList.documents.length,
         padding: EdgeInsets.all(8.0),
         itemBuilder: (context, i) {
-          return new ListTile(
-            title: Text(logsList.documents[i].data["montant"].toString()),
-            subtitle: Text(logsList.documents[i].data["sendBy"] +
-                "   " +
-                "->" +
-                "   " +
-                logsList.documents[i].data["receiver"]),
+          return Card(
+            child: new ListTile(
+              title: Text(logsList.documents[i].data["montant"].toString()),
+              subtitle: Text(logsList.documents[i].data["sendBy"] +
+                  "   " +
+                  "->" +
+                  "   " +
+                  logsList.documents[i].data["receiver"]),
+            ),
           );
         },
       );

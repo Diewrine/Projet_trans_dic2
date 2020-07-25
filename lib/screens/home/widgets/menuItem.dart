@@ -22,11 +22,11 @@ class _MenuItemState extends State<MenuItem> {
     if (user.jobFunction == "Etudiant") {
       return EtuMenuItemPage(userData: user);
     } else if (user.jobFunction == "Professeur") {
-      return ProfMenuItem();
+      return ProfMenuItem(userData: user);
     } else if (user.jobFunction == "Comptable") {
       return ComptaMenuItem();
     } else if (user.jobFunction == "departmentChief") {
-      return DeptMenuItem();
+      return DeptMenuItem(userData: user);
     } else if (user.jobFunction == "Admin") {
       return AdminMenuItem();
     } else {

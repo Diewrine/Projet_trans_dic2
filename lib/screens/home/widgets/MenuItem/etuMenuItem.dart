@@ -1,5 +1,6 @@
 import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/screens/home/menuItem/presenceList.dart';
+import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageDept/showDeptInfo.dart';
 import 'package:flutter/material.dart';
 
 class EtuMenuItemPage extends StatefulWidget {
@@ -55,8 +56,8 @@ class _EtuMenuItemPageState extends State<EtuMenuItemPage> {
                                 },
                                 color: Colors.white,
                                 icon: Icon(
-                                  Icons.dashboard,
-                                  size: 17,
+                                  Icons.content_paste,
+                                  size: 20,
                                 ),
                               ),
                               Center(
@@ -83,16 +84,40 @@ class _EtuMenuItemPageState extends State<EtuMenuItemPage> {
                               spreadRadius: 6,
                               blurRadius: 4)
                         ]),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Icon(Icons.account_balance, color: Colors.white),
-                          Text(
-                            'Menu 2',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
+                    child: SingleChildScrollView(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Column(
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                          return ShowDeptInfo(
+                                            userData: user,
+                                          );
+                                        },
+                                        fullscreenDialog: true,
+                                      ));
+                                },
+                                color: Colors.white,
+                                icon: Icon(
+                                  Icons.description,
+                                  size: 20,
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  'Département',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -108,22 +133,32 @@ class _EtuMenuItemPageState extends State<EtuMenuItemPage> {
                               spreadRadius: 6,
                               blurRadius: 4)
                         ]),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Icon(
-                            Icons.credit_card,
-                            color: Colors.white,
+                    child: SingleChildScrollView(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(0.0),
+                          child: Column(
+                            children: <Widget>[
+                              IconButton(
+                                onPressed: () {},
+                                color: Colors.white,
+                                icon: Icon(
+                                  Icons.clear_all,
+                                  size: 20,
+                                ),
+                              ),
+                              Center(
+                                child: Text(
+                                  '... Menu Resto',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              )
+                            ],
                           ),
-                          Text(
-                            'Menu 3',
-                            style: TextStyle(color: Colors.white),
-                          )
-                        ],
+                        ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

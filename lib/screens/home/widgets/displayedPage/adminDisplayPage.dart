@@ -1,9 +1,13 @@
 // import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
+import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/home/widgets/forAdmin/infoMessage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageAccount.dart';
 import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:flutter/material.dart';
 
 class AdminPage extends StatefulWidget {
+  final UserData userData;
+  AdminPage({this.userData});
   @override
   _AdminPageState createState() => _AdminPageState();
 }
@@ -11,6 +15,7 @@ class AdminPage extends StatefulWidget {
 class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
+    final UserData user = widget.userData;
     return SingleChildScrollView(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +42,8 @@ class _AdminPageState extends State<AdminPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                      MaterialPageRoute(
+                          builder: (context) => ProfilePage(userData: user)),
                     );
                   },
                 ),
@@ -105,13 +111,18 @@ class _AdminPageState extends State<AdminPage> {
               children: <Widget>[
                 IconButton(
                   icon: Icon(
-                    Icons.attach_money,
+                    Icons.info,
                   ),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MessageAdmin()),
+                    );
+                  },
                 ),
                 Text(
-                  "Liste des\ncomptes",
+                  "Passer une\ninformation",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
