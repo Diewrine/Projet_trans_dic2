@@ -60,7 +60,8 @@ class _UserDeptListState extends State<UserDeptList> {
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
               subtitle: Text(
-                usersList.documents[i].data["jobFunction"],
+                usersList.documents[i].data["classe"] ??
+                    usersList.documents[i].data["jobFunction"],
               ),
               onTap: () {
                 _showMyDialog(usersList.documents[i]);

@@ -1,4 +1,7 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/home/menuItem/presenceList.dart';
+import 'package:dic2_project_trans/screens/home/widgets/MenuItem/deptMenuItem/userDeptList.dart';
+import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageDept/showDeptInfo.dart';
 import 'package:flutter/material.dart';
 
 class ProfMenuItem extends StatefulWidget {
@@ -43,14 +46,14 @@ class _ProfMenuItemState extends State<ProfMenuItem> {
                             children: <Widget>[
                               IconButton(
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (BuildContext context) {
-                                  //         return PresenceList();
-                                  //       },
-                                  //       fullscreenDialog: true,
-                                  //     ));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                          return PresenceList();
+                                        },
+                                        fullscreenDialog: true,
+                                      ));
                                 },
                                 color: Colors.white,
                                 icon: Icon(
@@ -90,16 +93,16 @@ class _ProfMenuItemState extends State<ProfMenuItem> {
                             children: <Widget>[
                               IconButton(
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (BuildContext context) {
-                                  //         return ShowDeptInfo(
-                                  //           userData: user,
-                                  //         );
-                                  //       },
-                                  //       fullscreenDialog: true,
-                                  //     ));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                          return ShowDeptInfo(
+                                            userData: user,
+                                          );
+                                        },
+                                        fullscreenDialog: true,
+                                      ));
                                 },
                                 color: Colors.white,
                                 icon: Icon(
@@ -138,16 +141,26 @@ class _ProfMenuItemState extends State<ProfMenuItem> {
                           child: Column(
                             children: <Widget>[
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                          return UserDeptList(
+                                              user: user, option: "Etudiant");
+                                        },
+                                        fullscreenDialog: true,
+                                      ));
+                                },
                                 color: Colors.white,
                                 icon: Icon(
-                                  Icons.clear_all,
+                                  Icons.import_contacts,
                                   size: 20,
                                 ),
                               ),
                               Center(
                                 child: Text(
-                                  '... Menu Resto',
+                                  'Etudiants',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               )

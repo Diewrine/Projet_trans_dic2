@@ -337,6 +337,7 @@ class DatabaseService {
     final uid = user.uid;
     final DocumentSnapshot document = await userCollection.document(uid).get();
     final String jobFunction = document.data["jobFunction"];
+    final String deptName = document.data["dept"];
 
     try {
       if (jobFunction == "Admin") {
@@ -353,6 +354,7 @@ class DatabaseService {
             .collection('UserData')
             .orderBy("fullname")
             .where("jobFunction", isEqualTo: "Professeur")
+            .where("dept", isEqualTo: deptName)
             .getDocuments();
       }
     } catch (e) {
@@ -462,14 +464,13 @@ class DatabaseService {
   }
 
   //--List User for dept
-
   getUserInfo(UserData user, String option) async {
     final String deptName = user.dept;
 
     try {
       return await Firestore.instance
           .collection('UserData')
-          .orderBy("fullname")
+          .orderBy("classe" ?? "fullname")
           .where("dept", isEqualTo: deptName)
           .where("jobFunction", isEqualTo: option)
           .where("acountActivated", isEqualTo: true)

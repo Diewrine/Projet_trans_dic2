@@ -24,7 +24,7 @@ class _MenuItemState extends State<MenuItem> {
     } else if (user.jobFunction == "Professeur") {
       return ProfMenuItem(userData: user);
     } else if (user.jobFunction == "Comptable") {
-      return ComptaMenuItem();
+      return ComptaMenuItem(userData: user);
     } else if (user.jobFunction == "departmentChief") {
       return DeptMenuItem(userData: user);
     } else if (user.jobFunction == "Admin") {

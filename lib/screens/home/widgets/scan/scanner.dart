@@ -71,7 +71,7 @@ class _ScannerState extends State<Scanner> {
       appBar: AppBar(
         // elevation: 0.0,
 
-        title: Text("San !"),
+        title: Text("Scan !"),
         backgroundColor: Colors.indigo,
         leading: IconButton(
           icon: Icon(
