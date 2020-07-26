@@ -16,10 +16,15 @@ class _ComptaMoneyState extends State<ComptaMoney> {
   DatabaseService databaseService = new DatabaseService();
   TransfertsLog _transfertLog = new TransfertsLog();
 
+  var _controller = TextEditingController();
+
   String _destinataire = "";
   double montant;
   String _montant = "";
   String _uid;
+
+  String text1 = "Opération réussie";
+  String text2 = "Le transfert a été fait avec succés.";
 
   //Function
   void receiveName(String name, String uid) {
@@ -79,43 +84,48 @@ class _ComptaMoneyState extends State<ComptaMoney> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Card(
+                        color: Colors.transparent,
+                        elevation: 0.0,
                         child: Column(
-                      children: <Widget>[
-                        Card(
-                          elevation: 0.0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              _destinataire,
-                              style: TextStyle(
-                                  backgroundColor: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        Card(
-                            color: Colors.blueAccent,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: FlatButton.icon(
-                                icon: Icon(
-                                  Icons.adjust,
-                                  size: 25,
-                                ),
-                                label: Text(
-                                  'Destinataire',
-                                  textAlign: TextAlign.center,
+                          children: <Widget>[
+                            Card(
+                              color: Colors.blue[100],
+                              elevation: 0.0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  _destinataire,
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
+                                      decoration: TextDecoration.underline,
+                                      height: 1.5,
+                                      backgroundColor: Colors.blue[100],
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                onPressed: () => _showPanel(),
                               ),
-                            )),
-                      ],
-                    )),
+                            ),
+                            Card(
+                                color: Colors.blueAccent,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: FlatButton.icon(
+                                    icon: Icon(
+                                      Icons.adjust,
+                                      size: 25,
+                                    ),
+                                    label: Text(
+                                      'Destinataire',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    onPressed: () => _showPanel(),
+                                  ),
+                                )),
+                          ],
+                        )),
                   ),
                   SizedBox(
                     height: 20,
@@ -124,7 +134,9 @@ class _ComptaMoneyState extends State<ComptaMoney> {
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
                     child: Card(
                         child: TextField(
+                            controller: _controller,
                             keyboardType: TextInputType.number,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -161,16 +173,25 @@ class _ComptaMoneyState extends State<ComptaMoney> {
 
                           if (result != null) {
                             _transfertLog.sendLog(name, _destinataire, montant);
+                            _showMyDialog(text1, text2);
+                            _controller.clear();
                           } else {
                             print("errorr transfert !!!");
+                            setState(() {
+                              _destinataire = "";
+                            });
+                            _controller.clear();
+                            _showMyDialog("Echec de l'opération",
+                                "Le transfert n'a pas réussi.\nVeuillez remplir tous les champs");
                           }
-                          //-----------------
-
+                        } else {
+                          print("error");
                           setState(() {
                             _destinataire = "";
                           });
-                        } else {
-                          print("eeeee");
+                          _controller.clear();
+                          _showMyDialog("Echec de l'opération",
+                              "Le transfert n'a pas réussi.\nVeuillez remplir tous les champs");
                         }
                       },
                     ),
@@ -181,6 +202,40 @@ class _ComptaMoneyState extends State<ComptaMoney> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(String text1, String text2) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Transfert"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  text1,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  text2,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Retour'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                //Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

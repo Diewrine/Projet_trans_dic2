@@ -27,8 +27,7 @@ class _DisplayedPageState extends State<DisplayedPage> {
   @override
   Widget build(BuildContext context) {
     final String userJob = widget.joFunction;
-    // final String userUid = widget.uid;
-    // final String name = widget.name;
+
     final bool accountStatus = widget.accountStatus;
     final UserData user = widget.userData;
     if (userJob == "Etudiant") {

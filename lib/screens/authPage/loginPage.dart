@@ -1,3 +1,4 @@
+import 'package:dic2_project_trans/screens/authPage/forgotPwdScreen.dart';
 import 'package:dic2_project_trans/services/auth.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                                           child: TextFormField(
                                             validator: (value) => value.length <
                                                     6
-                                                ? "Le mot de passe doit contenir au moins 6 caractères"
+                                                ? "Le mot de passe est obligatoire"
                                                 : null,
                                             style:
                                                 TextStyle(color: Colors.white),
@@ -165,17 +166,44 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
 
                                         Center(
-                                          child: Text(
-                                            "Mot de passe oublié?",
-                                            style: TextStyle(
-                                              color: Colors.white,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 15, horizontal: 50),
+                                            child: Container(
+                                              width: double.infinity,
+                                              child: InkWell(
+                                                highlightColor: Colors.blueGrey,
+                                                onTap: () {
+                                                  //Navigator.pop(context);
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              ForgotPwdScreen()));
+                                                },
+                                                child: Text(
+                                                  "Mot de passe oublié?",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
+                                        // Center(
+                                        //   child: Text(
+                                        //     "Mot de passe oublié?",
+                                        //     style: TextStyle(
+                                        //       color: Colors.white,
+                                        //     ),
+                                        //   ),
+                                        // ),
                                         // mot de passe oublié
 
                                         SizedBox(
-                                          height: 10.0,
+                                          height: 20.0,
                                         ),
 
                                         Center(
