@@ -48,6 +48,7 @@ class AuthService {
         pMoney = pMoney,
         null,
         false,
+        null,
       );
 
       return _userFromFirebaseUser(user);

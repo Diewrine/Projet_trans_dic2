@@ -18,9 +18,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     void _showModalPanel(UserData user) {
       showBottomSheet(
-          //showModalBottomSheet
-          //isScrollControlled: true,
-
           context: context,
           builder: (context) {
             return Container(
@@ -112,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                                 padding:
                                     EdgeInsets.only(bottom: 3.0, right: 1.0),
                                 child: IconButton(
-                                  tooltip: "Upload",
+                                  tooltip: "Update Fullname",
                                   icon: Icon(
                                     Icons.edit,
                                     color: Colors.white,

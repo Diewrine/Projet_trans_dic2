@@ -13,6 +13,9 @@ class EtuMoney extends StatefulWidget {
 class _EtuMoneyState extends State<EtuMoney> {
   DatabaseService databaseService = new DatabaseService();
   //-------------------
+
+  var _controller = TextEditingController();
+
   String _destinataire = "";
   double montant;
   String _montant = "";
@@ -139,6 +142,7 @@ class _EtuMoneyState extends State<EtuMoney> {
 
                                       Center(
                                         child: TextField(
+                                          controller: _controller,
                                           enabled: false,
                                           textAlign: TextAlign.center,
                                           decoration: new InputDecoration(
@@ -187,6 +191,7 @@ class _EtuMoneyState extends State<EtuMoney> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 50.0),
                                   child: TextField(
+                                      controller: _controller,
                                       textAlign: TextAlign.center,
                                       keyboardType: TextInputType.number,
                                       style: TextStyle(
@@ -225,6 +230,7 @@ class _EtuMoneyState extends State<EtuMoney> {
                                           _destinataire != "") {
                                         dynamic result = await databaseService
                                             .etuTreansfertPMoney(_uid, montant);
+                                        _controller.clear();
                                         if (result != null) {
                                           _showMyDialog(text1, text2);
                                         } else {

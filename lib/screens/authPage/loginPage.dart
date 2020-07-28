@@ -192,15 +192,6 @@ class _LoginPageState extends State<LoginPage> {
                                             ),
                                           ),
                                         ),
-                                        // Center(
-                                        //   child: Text(
-                                        //     "Mot de passe oublié?",
-                                        //     style: TextStyle(
-                                        //       color: Colors.white,
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // mot de passe oublié
 
                                         SizedBox(
                                           height: 20.0,

@@ -87,7 +87,8 @@ class _EditProfilState extends State<EditProfil> {
                                 user.classe,
                                 user.pMoney,
                                 user.urlPhoto,
-                                user.accountActivated);
+                                user.accountActivated,
+                                user.password ?? null);
                             Navigator.pop(context);
                           }
                         }),

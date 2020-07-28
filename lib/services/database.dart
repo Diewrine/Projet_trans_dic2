@@ -20,16 +20,42 @@ class DatabaseService {
       String classe,
       double pMoney,
       String urlPhoto,
-      bool acountActivated) async {
-    return await userCollection.document(uid).setData({
-      "uid": uid,
-      'fullname': fullname,
-      'jobFunction': jobFunction,
-      'dept': dept,
-      'classe': classe,
-      'pMoney': pMoney,
-      "urlPhoto": urlPhoto ?? null,
-      'acountActivated': acountActivated,
+      bool acountActivated,
+      String password) async {
+    if (jobFunction == "Etudiant" ||
+        jobFunction == "Comptable" ||
+        jobFunction == "Resto") {
+      return await userCollection.document(uid).setData({
+        "uid": uid,
+        'fullname': fullname,
+        'jobFunction': jobFunction,
+        'dept': dept,
+        'classe': classe,
+        'pMoney': pMoney,
+        "urlPhoto": urlPhoto ?? null,
+        'acountActivated': acountActivated,
+        "password": password,
+      });
+    } else {
+      return await userCollection.document(uid).setData({
+        "uid": uid,
+        'fullname': fullname,
+        'jobFunction': jobFunction,
+        'dept': dept,
+        'classe': classe,
+        'pMoney': pMoney,
+        "urlPhoto": urlPhoto ?? null,
+        'acountActivated': acountActivated,
+      });
+    }
+  }
+
+// Password for pMoney
+  Future updatePassword(String password) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    return await userCollection.document(uid).updateData({
+      "password": password,
     });
   }
 
@@ -44,6 +70,7 @@ class DatabaseService {
       jobFunction: snapshot.data['jobFunction'],
       urlPhoto: snapshot.data['urlPhoto'],
       pMoney: snapshot.data['pMoney'],
+      password: snapshot.data['password'],
     );
   }
 
@@ -101,12 +128,21 @@ class DatabaseService {
   }
 
   // Transfer Service
-  Future treansfertPMoney(String uidUser, double pMoney) async {
+  Future treansfertPMoney(
+      String uidUser, double pMoney, String password) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+    final String pwd = document.data["password"];
     try {
-      await userCollection.document(uidUser).updateData({
-        'pMoney': FieldValue.increment(pMoney),
-      });
-      return userData;
+      if (pwd == password) {
+        await userCollection.document(uidUser).updateData({
+          'pMoney': FieldValue.increment(pMoney),
+        });
+        return userData;
+      } else {
+        return null;
+      }
     } catch (e) {
       print(e.toString());
       return null;

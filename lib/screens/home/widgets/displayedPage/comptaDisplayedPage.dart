@@ -1,6 +1,7 @@
 import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
+import 'package:dic2_project_trans/screens/pMoney/pwdSettings.dart';
 import 'package:dic2_project_trans/screens/pMoney/transfertHistoric.dart';
 import 'package:flutter/material.dart';
 
@@ -126,14 +127,28 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                     ),
                     color: Colors.white,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return ComptaMoney(name: user.fullname);
-                            },
-                            fullscreenDialog: true,
-                          ));
+                      if (user.password != null) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return ComptaMoney(name: user.fullname);
+                              },
+                              fullscreenDialog: true,
+                            ));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return PwdSettings(
+                                  name: user.fullname,
+                                  password: user.password,
+                                );
+                              },
+                              fullscreenDialog: true,
+                            ));
+                      }
                     },
                   ),
                   Text(
