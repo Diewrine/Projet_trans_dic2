@@ -1,12 +1,13 @@
 import 'package:dic2_project_trans/screens/pMoney/comptaMoney.dart';
+import 'package:dic2_project_trans/screens/pMoney/etuMoney.dart';
 import 'package:dic2_project_trans/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class PwdSettings extends StatefulWidget {
-  final String password;
+  final String jobFunction;
   final String name;
-  PwdSettings({this.password, this.name});
+  PwdSettings({this.jobFunction, this.name});
   @override
   _PwdSettingsState createState() => _PwdSettingsState();
 }
@@ -22,8 +23,7 @@ class _PwdSettingsState extends State<PwdSettings> {
   @override
   Widget build(BuildContext context) {
     final String name = widget.name;
-    final String password = widget.password;
-    print(password);
+    final String jobFunction = widget.jobFunction;
 
     return Scaffold(
       backgroundColor: Colors.indigo[400],
@@ -179,14 +179,25 @@ class _PwdSettingsState extends State<PwdSettings> {
                                   databaseService.updatePassword(password1);
 
                                   Navigator.pop(context);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return ComptaMoney(name: name);
-                                        },
-                                        fullscreenDialog: true,
-                                      ));
+                                  if (jobFunction == "Comptable") {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return ComptaMoney(name: name);
+                                          },
+                                          fullscreenDialog: true,
+                                        ));
+                                  } else {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return EtuMoney();
+                                          },
+                                          fullscreenDialog: true,
+                                        ));
+                                  }
                                 }
                               } else {
                                 print("error");

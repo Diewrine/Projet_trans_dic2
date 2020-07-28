@@ -4,6 +4,7 @@ import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:dic2_project_trans/screens/home/widgets/scan/scanner.dart';
 import 'package:dic2_project_trans/screens/pMoney/etuMoney.dart';
+import 'package:dic2_project_trans/screens/pMoney/pwdSettings.dart';
 import 'package:flutter/material.dart';
 
 // import '../../editProfil.dart';s
@@ -120,14 +121,28 @@ class _EtudiantDisplayedPageState extends State<EtudiantDisplayedPage> {
                     ),
                     color: Colors.white,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return EtuMoney();
-                            },
-                            fullscreenDialog: true,
-                          ));
+                      if (user.password != null) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return EtuMoney();
+                              },
+                              fullscreenDialog: true,
+                            ));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return PwdSettings(
+                                  name: user.fullname,
+                                  jobFunction: user.jobFunction,
+                                );
+                              },
+                              fullscreenDialog: true,
+                            ));
+                      }
                     },
                   ),
                   Text(

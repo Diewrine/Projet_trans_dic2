@@ -161,7 +161,9 @@ class _ComptaMoneyState extends State<ComptaMoney> {
                         decoration: InputDecoration(
                           hintText: "Montant ",
                           hintStyle: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.w100),
+                            color: Colors.black,
+                            fontWeight: FontWeight.w100,
+                          ),
                         ),
                         onChanged: (value) {
                           setState(() {

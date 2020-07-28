@@ -143,7 +143,7 @@ class _ComptaDisplayedPageState extends State<ComptaDisplayedPage> {
                               builder: (BuildContext context) {
                                 return PwdSettings(
                                   name: user.fullname,
-                                  password: user.password,
+                                  jobFunction: user.jobFunction,
                                 );
                               },
                               fullscreenDialog: true,

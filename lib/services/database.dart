@@ -149,14 +149,16 @@ class DatabaseService {
     }
   }
 
-  Future etuTreansfertPMoney(String uidUser, double pMoney) async {
+  Future etuTreansfertPMoney(
+      String uidUser, double pMoney, String password) async {
     final FirebaseUser user = await auth.currentUser();
     final uid = user.uid;
     final DocumentSnapshot document = await userCollection.document(uid).get();
     final double solde = document.data["pMoney"];
+    final String pwd = document.data["password"];
 
     try {
-      if (solde >= pMoney) {
+      if (solde >= pMoney && pwd == password) {
         await userCollection.document(uidUser).updateData({
           'pMoney': FieldValue.increment(pMoney),
         });
