@@ -1,4 +1,5 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/pMoney/changePwd.dart';
 import 'package:dic2_project_trans/screens/pMoney/etudiantList.dart';
 import 'package:dic2_project_trans/services/database.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
@@ -73,6 +74,30 @@ class _EtuMoneyState extends State<EtuMoney> {
                     Navigator.pop(context);
                   },
                 ),
+                actions: <Widget>[
+                  FlatButton.icon(
+                    label: Text(
+                      "Mot de passe",
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
+                    icon: Icon(
+                      // Icons.arrow_back_ios,
+                      Icons.enhanced_encryption,
+                      size: 25,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return ChangePWD();
+                            },
+                            fullscreenDialog: true,
+                          ));
+                    },
+                  ),
+                ],
               ),
               body: SingleChildScrollView(
                 child: Container(

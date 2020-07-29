@@ -175,6 +175,30 @@ class DatabaseService {
     }
   }
 
+  //------------Change password
+  Future changePassword(String oldPassword, String newPassword) async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+
+    final String pwd = document.data["password"];
+
+    try {
+      if (oldPassword == pwd) {
+        await userCollection.document(uid).updateData({
+          'password': newPassword,
+        });
+
+        return userData;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
   //-------------------For BottomNavBar
   listUserForBottomNav() async {
     final FirebaseUser user = await auth.currentUser();
