@@ -1,9 +1,11 @@
 import 'package:dic2_project_trans/models/user.dart';
+import 'package:dic2_project_trans/screens/home/widgets/displayedPage/SuperUserPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/adminDisplayPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/comptaDisplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/deptDisplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/etuDisplayedPage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/displayedPage/profDisplayedPage.dart';
+import 'package:dic2_project_trans/screens/home/widgets/displayedPage/restoDisplayPage.dart';
 import 'package:dic2_project_trans/shared/loading.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +42,11 @@ class _DisplayedPageState extends State<DisplayedPage> {
     } else if (userJob == "departmentChief") {
       return DeptDisplayedPage(accountStatus: accountStatus, userData: user);
     } else if (userJob == "Admin") {
-      return AdminPage(userData: user);
+      return AdminPage(accountStatus: accountStatus, userData: user);
+    } else if (userJob == "Resto") {
+      return RestoDisplayPage(accountStatus: accountStatus, userData: user);
+    } else if (userJob == "Superuser") {
+      return SuperUserPage();
     } else {
       return Loading();
     }

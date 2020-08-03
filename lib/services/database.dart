@@ -392,6 +392,23 @@ class DatabaseService {
     }
   }
 
+  Future activateAccount() async {
+    final FirebaseUser user = await auth.currentUser();
+    final uid = user.uid;
+    final DocumentSnapshot document = await userCollection.document(uid).get();
+
+    //print(uid);
+    try {
+      await userCollection.document(uid).updateData({
+        'acountActivated': true,
+      });
+      return document;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
   //--------------------
 
   listUserForAdmin() async {
@@ -408,8 +425,8 @@ class DatabaseService {
             .orderBy("fullname")
             .where("jobFunction", whereIn: [
           "Etudiant",
-          "Comptable",
-          "departmentChief"
+          "departmentChief",
+          "Admin",
         ]).getDocuments();
       } else if (jobFunction == "departmentChief") {
         return await Firestore.instance
@@ -417,6 +434,12 @@ class DatabaseService {
             .orderBy("fullname")
             .where("jobFunction", isEqualTo: "Professeur")
             .where("dept", isEqualTo: deptName)
+            .getDocuments();
+      } else if (jobFunction == "Resto") {
+        return await Firestore.instance
+            .collection('UserData')
+            .orderBy("fullname")
+            .where("jobFunction", isEqualTo: "Comptable")
             .getDocuments();
       }
     } catch (e) {

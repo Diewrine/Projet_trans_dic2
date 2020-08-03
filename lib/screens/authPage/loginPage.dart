@@ -180,7 +180,10 @@ class _LoginPageState extends State<LoginPage> {
                                                       MaterialPageRoute(
                                                           builder: (BuildContext
                                                                   context) =>
-                                                              ForgotPwdScreen()));
+                                                              ForgotPwdScreen(
+                                                                jobFunction:
+                                                                    " ",
+                                                              )));
                                                 },
                                                 child: Text(
                                                   "Mot de passe oublié?",

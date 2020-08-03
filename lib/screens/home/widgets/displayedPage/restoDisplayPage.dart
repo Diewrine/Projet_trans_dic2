@@ -1,19 +1,17 @@
-// import 'package:dic2_project_trans/screens/home/widgets/EditProfil/editProfil.dart';
 import 'package:dic2_project_trans/models/user.dart';
-import 'package:dic2_project_trans/screens/home/widgets/forAdmin/infoMessage.dart';
 import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageAccount.dart';
 import 'package:dic2_project_trans/screens/home/widgets/profileImage/imageProfile.dart';
 import 'package:flutter/material.dart';
 
-class AdminPage extends StatefulWidget {
+class RestoDisplayPage extends StatefulWidget {
   final accountStatus;
   final UserData userData;
-  AdminPage({this.accountStatus, this.userData});
+  RestoDisplayPage({this.accountStatus, this.userData});
   @override
-  _AdminPageState createState() => _AdminPageState();
+  _RestoDisplayPageState createState() => _RestoDisplayPageState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _RestoDisplayPageState extends State<RestoDisplayPage> {
   @override
   Widget build(BuildContext context) {
     final UserData user = widget.userData;
@@ -116,18 +114,13 @@ class _AdminPageState extends State<AdminPage> {
                 children: <Widget>[
                   IconButton(
                     icon: Icon(
-                      Icons.info,
+                      Icons.ac_unit,
                     ),
                     color: Colors.white,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MessageAdmin()),
-                      );
-                    },
+                    onPressed: () {},
                   ),
                   Text(
-                    "Passer une\ninformation",
+                    "Menu 3",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

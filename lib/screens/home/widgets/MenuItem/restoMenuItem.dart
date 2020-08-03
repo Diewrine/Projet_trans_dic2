@@ -1,16 +1,16 @@
 import 'package:dic2_project_trans/models/user.dart';
 import 'package:dic2_project_trans/screens/authPage/forgotPwdScreen.dart';
-import 'package:dic2_project_trans/screens/home/widgets/forAdmin/manageDept/deptManage.dart';
+
 import 'package:flutter/material.dart';
 
-class AdminMenuItem extends StatefulWidget {
+class RestoMenuItem extends StatefulWidget {
   final UserData userData;
-  AdminMenuItem({this.userData});
+  RestoMenuItem({this.userData});
   @override
-  _AdminMenuItemState createState() => _AdminMenuItemState();
+  _RestoMenuItemState createState() => _RestoMenuItemState();
 }
 
-class _AdminMenuItemState extends State<AdminMenuItem> {
+class _RestoMenuItemState extends State<RestoMenuItem> {
   @override
   Widget build(BuildContext context) {
     final UserData user = widget.userData;
@@ -44,16 +44,7 @@ class _AdminMenuItemState extends State<AdminMenuItem> {
                           child: Column(
                             children: <Widget>[
                               IconButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return ManageDept();
-                                        },
-                                        fullscreenDialog: true,
-                                      ));
-                                },
+                                onPressed: () {},
                                 color: Colors.white,
                                 icon: Icon(
                                   Icons.description,
@@ -62,7 +53,7 @@ class _AdminMenuItemState extends State<AdminMenuItem> {
                               ),
                               Center(
                                 child: Text(
-                                  'Département',
+                                  'Menu3',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               )
@@ -188,27 +179,13 @@ class _AdminMenuItemState extends State<AdminMenuItem> {
                                       MaterialPageRoute(
                                         builder: (BuildContext context) {
                                           return ForgotPwdScreen(
-                                            jobFunction: "Admin",
+                                            jobFunction: "Resto",
                                           );
                                         },
                                         fullscreenDialog: true,
                                       ));
                                 },
                               ),
-                              // IconButton(
-                              //   onPressed: () {},
-                              //   color: Colors.white,
-                              //   icon: Icon(
-                              //     Icons.description,
-                              //     size: 20,
-                              //   ),
-                              // ),
-                              // Center(
-                              //   child: Text(
-                              //     'Département',
-                              //     style: TextStyle(color: Colors.white),
-                              //   ),
-                              // )
                             ],
                           ),
                         ),

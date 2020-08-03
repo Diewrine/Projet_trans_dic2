@@ -1,13 +1,20 @@
-import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
+// import 'package:dic2_project_trans/screens/authPage/loginPage.dart';
+import 'package:dic2_project_trans/services/auth.dart';
+import 'package:dic2_project_trans/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPwdScreen extends StatefulWidget {
+  final String jobFunction;
+  ForgotPwdScreen({this.jobFunction});
   @override
   _ForgotPwdScreenState createState() => _ForgotPwdScreenState();
 }
 
 class _ForgotPwdScreenState extends State<ForgotPwdScreen> {
+  DatabaseService databaseService = new DatabaseService();
+  final AuthService _auth = AuthService();
+
   String email;
 
   final _formKey = GlobalKey<FormState>();
@@ -16,6 +23,7 @@ class _ForgotPwdScreenState extends State<ForgotPwdScreen> {
       "Cliquer sur le lien que vous recevrez par mail\npour changer votre mot de passe.";
   @override
   Widget build(BuildContext context) {
+    String jobFunction = widget.jobFunction;
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -62,6 +70,7 @@ class _ForgotPwdScreenState extends State<ForgotPwdScreen> {
                       },
                       style: TextStyle(
                         color: Colors.black26,
+                        fontWeight: FontWeight.bold,
                       ),
                       decoration: InputDecoration(
                         hintText: "Email",
@@ -86,14 +95,22 @@ class _ForgotPwdScreenState extends State<ForgotPwdScreen> {
                       ),
                       color: Colors.lightGreen,
                       textColor: Colors.white,
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState.validate()) {
                           FirebaseAuth.instance
                               .sendPasswordResetEmail(email: email);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
+
+                          if (jobFunction == "Admin" ||
+                              jobFunction == "Resto") {
+                            databaseService.activateAccount();
+                            await _auth.signOut();
+                          } else {
+                            print("nothing");
+                          }
+                          setState(() {
+                            message =
+                                "Consultez votre email pour continuer la procedure .";
+                          });
                         }
                       },
                       child: Text("Envoyer mail"),
