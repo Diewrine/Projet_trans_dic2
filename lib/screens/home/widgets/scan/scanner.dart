@@ -16,7 +16,8 @@ class _ScannerState extends State<Scanner> {
   String textScan = "";
   QRViewController controller;
   String text1 = 'Opération réussie.';
-  String text2 = 'Votre profil a été mis à jour. Merci !';
+  String text2 = 'Votre compte a été mis à jour. Merci !';
+  String text3 = 'Votre profil a été mis à jour. Merci !';
 
   DateTime _currentDate = new DateTime.now();
 
@@ -45,13 +46,17 @@ class _ScannerState extends State<Scanner> {
       });
     }
     //---------------
-    else if (qrText == "eNtrycLaSsDIC2") {
+    else if (qrText == "eNtrycLaSsDIC2" ||
+        qrText == "eNtRycLasSDIC3gEm" ||
+        qrText == "eNtRycLasSDIC1gC") {
       setState(() {
         colorTextScan = true;
         textScan =
             "Enregistrez votre heure d'entrée.\nSinon, vous serez considérez absent (e)";
       });
-    } else if (qrText == "EXiTcLasSDIC2") {
+    } else if (qrText == "EXiTcLasSDIC2" ||
+        qrText == "EXiTcLasSDIC3gEm" ||
+        qrText == "EXiTcLasSDIC1gC") {
       setState(() {
         colorTextScan = true;
         textScan = "Enregistrez votre heure de sortie.\n";
@@ -130,11 +135,15 @@ class _ScannerState extends State<Scanner> {
                       textScan = "Scan non achevé !";
                     });
                   } else if (qrText == "eNtrycLaSsDIC2" ||
-                      qrText == "EXiTcLasSDIC2") {
+                      qrText == "EXiTcLasSDIC2" ||
+                      qrText == "EXiTcLasSDIC3gEm" ||
+                      qrText == "eNtRycLasSDIC3gEm" ||
+                      qrText == "eNtRycLasSDIC1gC" ||
+                      qrText == "EXiTcLasSDIC1gC") {
                     dynamic result = await databaseService.scanPresenceClass(
                         qrText, _currentDate);
                     if (result != null) {
-                      _showMyDialog(text1, text2);
+                      _showMyDialog(text1, text3);
                     } else {
                       setState(() {
                         colorTextScan = true;

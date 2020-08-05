@@ -83,6 +83,9 @@ class _ManageAccountState extends State<ManageAccount> {
                     ? Text("Désactiver")
                     : Text("Activer"),
               ),
+              onTap: () {
+                _showMyDialog(usersList.documents[i]);
+              },
             ),
           );
         },
@@ -90,5 +93,154 @@ class _ManageAccountState extends State<ManageAccount> {
     } else {
       return Loading2();
     }
+  }
+
+  Future<void> _showMyDialog(DocumentSnapshot doc) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('A propos'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('fullname',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 12.0)),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  doc.data["fullname"] ?? "non renseigné",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('Fonction',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 12.0)),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                  doc.data["jobFunction"] ?? "non renseigné",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('Département',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 12.0)),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(doc.data["dept"] ?? " ... ",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text('classe',
+                                  style: TextStyle(
+                                      color: Colors.blueGrey, fontSize: 12.0)),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(doc.data["classe"] ?? " ... ",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Retour'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

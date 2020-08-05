@@ -325,7 +325,7 @@ class _ComptaMoneyState extends State<ComptaMoney> {
                     setState(() {
                       pwd = null;
                     });
-                    _transfertLog.sendLog(text1, _destinataire, montant);
+                    _transfertLog.sendLog(text1, montant);
 
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();

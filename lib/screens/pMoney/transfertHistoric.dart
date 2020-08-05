@@ -55,6 +55,7 @@ class _TransfertHistoricComptaState extends State<TransfertHistoricCompta> {
         itemBuilder: (context, i) {
           return Card(
             child: new ListTile(
+              dense: true,
               title: Text(logsList.documents[i].data["montant"].toString()),
               subtitle: Text(logsList.documents[i].data["sendBy"] +
                   "   " +

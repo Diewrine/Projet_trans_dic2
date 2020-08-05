@@ -271,27 +271,6 @@ class _EtuMoneyState extends State<EtuMoney> {
                                         _showMyDialog2("Echec de l'opération",
                                             "Le transfert ne peut pas être fait.\n\nVeuillez remplir tous les champs");
                                       }
-                                      //-------------
-                                      // if (montant != null &&
-                                      //     _destinataire != "") {
-                                      //   dynamic result = await databaseService
-                                      //       .etuTreansfertPMoney(_uid, montant);
-                                      //   _controller.clear();
-                                      //   if (result != null) {
-                                      //     _showMyDialog(text1, text2);
-                                      //   } else {
-                                      //     _showMyDialog("Echec de l'opération",
-                                      //         "\nVotre compte est insuffisant. \n Veuillez rechercher svp!");
-                                      //   }
-
-                                      //   setState(() {
-                                      //     _destinataire = "";
-                                      //   });
-                                      // } else {
-                                      //   print("eeeee");
-                                      // }
-
-                                      //--------------
                                     },
                                   ),
                                 )

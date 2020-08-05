@@ -39,8 +39,8 @@ class _HomeState extends State<Home> {
               size: 25,
               color: Colors.white,
             ),
-            onPressed: () async {
-              await _auth.signOut();
+            onPressed: () {
+              _showMyDialog();
             },
           ),
         ],
@@ -49,6 +49,62 @@ class _HomeState extends State<Home> {
         child: HomePage(),
       ),
       bottomNavigationBar: BottomNav(currentIndex: 0),
+    );
+  }
+
+  //-------
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Déconnexion",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  "Voulez-vous votre quitter session ?",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text('Retour'),
+                  color: Colors.blue,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                RaisedButton(
+                  color: Colors.red,
+                  child: Text('Déconnexion'),
+                  onPressed: () async {
+                    Navigator.of(context).pop();
+                    await _auth.signOut();
+                  },
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

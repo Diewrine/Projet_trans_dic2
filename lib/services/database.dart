@@ -235,7 +235,6 @@ class DatabaseService {
             )
             .getDocuments();
       } else if (jobFunction == "departmentChief") {
-        print("Departement ...");
         return await Firestore.instance
             .collection('UserData')
             .orderBy("fullname")
@@ -270,14 +269,17 @@ class DatabaseService {
         await userCollection.document(uid).updateData({
           'pMoney': FieldValue.increment(-100),
         });
+        return user;
       } else if (scanResult == "breakFast50" && solde >= 50.0) {
         await userCollection.document(uid).updateData({
           'pMoney': FieldValue.increment(-50),
         });
+        return user;
       } else if (scanResult == "rent3000" && solde >= 3000.0) {
         await userCollection.document(uid).updateData({
           'pMoney': FieldValue.increment(-3000),
         });
+        return user;
       } else {
         return null;
       }
@@ -304,8 +306,11 @@ class DatabaseService {
     final String absence = "Absent";
 
     try {
-      if (scanResult == "EXiTcLasSDIC2" && userClasse == "D.I.C.2") {
-        return await presenceCollection.document(uid).setData({
+      // -----for DIC2 git
+      if (scanResult == "EXiTcLasSDIC2" &&
+          userClasse == "D.I.C.2" &&
+          userDept == "G.I.T.") {
+        await presenceCollection.document(uid).updateData({
           'jobFunction': jobFunction,
           'fullname': fullname,
           'exitDate': currentDate,
@@ -313,8 +318,11 @@ class DatabaseService {
           "classe": "D.I.C.2",
           "dept": userDept,
         });
-      } else if (scanResult == "eNtrycLaSsDIC2" && userClasse == "D.I.C.2") {
-        return await presenceCollection.document(uid).setData({
+        return user;
+      } else if (scanResult == "eNtrycLaSsDIC2" &&
+          userClasse == "D.I.C.2" &&
+          userDept == "G.I.T.") {
+        await presenceCollection.document(uid).setData({
           'jobFunction': jobFunction,
           'fullname': fullname,
           'exitDate': null,
@@ -323,7 +331,150 @@ class DatabaseService {
           "classe": "D.I.C.2",
           "dept": userDept,
         });
-      } else {
+        return user;
+      }
+      //*prof
+      else if (scanResult == "eNtrycLaSsDIC2" &&
+          jobFunction == "Professeur" &&
+          userDept == "G.I.T.") {
+        await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': null,
+          'entryDate': currentDate,
+          'prensence': presence,
+          "classe": "D.I.C.2",
+          "dept": userDept,
+        });
+        return user;
+      } else if (scanResult == "EXiTcLasSDIC2" &&
+          jobFunction == "Professeur" &&
+          userDept == "G.I.T.") {
+        await presenceCollection.document(uid).updateData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': currentDate,
+          'prensence': absence,
+          "classe": "D.I.C.2",
+          "dept": userDept,
+        });
+        return user;
+      }
+
+      //-------------
+      //-----for dic3 GEM
+      if (scanResult == "EXiTcLasSDIC3gEm" &&
+          userClasse == "D.I.C.3" &&
+          userDept == "G.E.M.") {
+        await presenceCollection.document(uid).updateData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': currentDate,
+          'prensence': absence,
+          "classe": "D.I.C.3",
+          "dept": userDept,
+        });
+        return user;
+      } else if (scanResult == "eNtRycLasSDIC3gEm" &&
+          userClasse == "D.I.C.3" &&
+          userDept == "G.E.M.") {
+        await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': null,
+          'entryDate': currentDate,
+          'prensence': presence,
+          "classe": "D.I.C.3",
+          "dept": userDept,
+        });
+        return user;
+      }
+
+      //*prof
+      else if (scanResult == "eNtRycLasSDIC3gEm" &&
+          jobFunction == "Professeur" &&
+          userDept == "G.E.M.") {
+        await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': null,
+          'entryDate': currentDate,
+          'prensence': presence,
+          "classe": "D.I.C.3",
+          "dept": userDept,
+        });
+        return user;
+      } else if (scanResult == "EXiTcLasSDIC3gEm" &&
+          jobFunction == "Professeur" &&
+          userDept == "G.E.M.") {
+        await presenceCollection.document(uid).updateData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': currentDate,
+          'prensence': absence,
+          "classe": "D.I.C.3",
+          "dept": userDept,
+        });
+        return user;
+      }
+      // for DIC1 GC--------
+      if (scanResult == "EXiTcLasSDIC1gC" &&
+          userClasse == "D.I.C.1" &&
+          userDept == "G.C.") {
+        await presenceCollection.document(uid).updateData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': currentDate,
+          'prensence': absence,
+          "classe": "D.I.C.1",
+          "dept": userDept,
+        });
+        return user;
+      } else if (scanResult == "eNtRycLasSDIC1gC" &&
+          userClasse == "D.I.C.1" &&
+          userDept == "G.C.") {
+        await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': null,
+          'entryDate': currentDate,
+          'prensence': presence,
+          "classe": "D.I.C.1",
+          "dept": userDept,
+        });
+        return user;
+      }
+
+      //*prof
+      else if (scanResult == "eNtRycLasSDIC1gC" &&
+          jobFunction == "Professeur" &&
+          userDept == "G.C.") {
+        await presenceCollection.document(uid).setData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': null,
+          'entryDate': currentDate,
+          'prensence': presence,
+          "classe": "D.I.C.1",
+          "dept": userDept,
+        });
+        return user;
+      } else if (scanResult == "EXiTcLasSDIC1gC" &&
+          jobFunction == "Professeur" &&
+          userDept == "G.C.") {
+        await presenceCollection.document(uid).updateData({
+          'jobFunction': jobFunction,
+          'fullname': fullname,
+          'exitDate': currentDate,
+          'prensence': absence,
+          "classe": "D.I.C.1",
+          "dept": userDept,
+        });
+        return user;
+      }
+
+      //----------
+      else {
         return null;
       }
     } catch (e) {
@@ -340,8 +491,10 @@ class DatabaseService {
     final String jobFunction = document.data["jobFunction"];
     final String studentClass = document.data["classe"];
     final String userDept = document.data["dept"];
+    final DocumentSnapshot document2 =
+        await presenceCollection.document(uid).get();
+    final String profClasse = document2.data["classe"];
 
-    print(userDept);
     try {
       if (jobFunction == "Etudiant") {
         return await Firestore.instance
@@ -359,7 +512,7 @@ class DatabaseService {
             .orderBy("entryDate")
             .where(
               "classe",
-              isEqualTo: "D.I.C.2",
+              isEqualTo: profClasse,
             )
             .where(
               "dept",
@@ -427,6 +580,7 @@ class DatabaseService {
           "Etudiant",
           "departmentChief",
           "Admin",
+          "Comptable",
         ]).getDocuments();
       } else if (jobFunction == "departmentChief") {
         return await Firestore.instance

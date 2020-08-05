@@ -66,7 +66,7 @@ class _SignUpPageState extends State<SignUpPage> {
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.brightness_1,
+                    Icons.toys,
                     color: Color.fromRGBO(49, 39, 79, 1),
                   ),
                   backgroundColor: Colors.indigo,
@@ -79,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.brightness_1,
+                    Icons.toys,
                     color: Color.fromRGBO(49, 39, 79, 1),
                   ),
                   backgroundColor: Colors.indigo[400],
@@ -92,7 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.brightness_1,
+                    Icons.toys,
                     color: Color.fromRGBO(49, 39, 79, 1),
                   ),
                   backgroundColor: Colors.indigo[300],
@@ -105,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.brightness_1,
+                    Icons.toys,
                     color: Color.fromRGBO(49, 39, 79, 1),
                   ),
                   backgroundColor: Colors.purple[400],
